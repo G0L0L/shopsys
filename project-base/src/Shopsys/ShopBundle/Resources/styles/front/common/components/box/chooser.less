@@ -16,6 +16,7 @@
         padding: @box-chooser-item-padding;
         display: flex;
         align-items: flex-start;
+        cursor: pointer;
 
         .is-no-flex & {
             display: block;
@@ -23,6 +24,8 @@
         }
 
         &__check {
+            display: flex;
+            padding-top: 5px;
             flex: 0 @box-chooser-check-width;
 
             .is-no-flex & {
