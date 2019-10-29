@@ -104,11 +104,53 @@ class NumberFormatHelper extends Module
      * @param \Shopsys\FrameworkBundle\Component\Money\Money $price
      * @return string
      */
+    public function getFormattedPriceWithCurrencySymbolRoundedByCurrencyOnFrontend(Money $price): string
+    {
+        $firstDomainDefaultCurrency = $this->currencyFacade->getDomainDefaultCurrencyByDomainId(Domain::FIRST_DOMAIN_ID);
+        $firstDomainLocale = $this->localizationHelper->getFrontendLocale();
+        $currencyFormatter = $this->currencyFormatterFactory->createForCurrency($firstDomainLocale, $firstDomainDefaultCurrency);
+
+        $intlCurrency = $this->intlCurrencyRepository->get($firstDomainDefaultCurrency->getCode(), $firstDomainLocale);
+
+        $formattedPriceWithCurrencySymbol = $currencyFormatter->format(
+            $this->rounding->roundPriceWithVat($price)->getAmount(),
+            $intlCurrency->getCurrencyCode()
+        );
+
+        return $this->normalizeSpaces($formattedPriceWithCurrencySymbol);
+    }
+
+    /**
+     * Inspired by formatCurrency() method, {@see \Shopsys\FrameworkBundle\Twig\PriceExtension}
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $price
+     * @return string
+     */
     public function getFormattedPriceOnFrontend(Money $price): string
     {
         $firstDomainDefaultCurrency = $this->currencyFacade->getDomainDefaultCurrencyByDomainId(Domain::FIRST_DOMAIN_ID);
         $firstDomainLocale = $this->localizationHelper->getFrontendLocale();
         $currencyFormatter = $this->currencyFormatterFactory->create($firstDomainLocale);
+
+        $intlCurrency = $this->intlCurrencyRepository->get($firstDomainDefaultCurrency->getCode(), $firstDomainLocale);
+
+        $formattedPriceWithCurrencySymbol = $currencyFormatter->format(
+            $this->rounding->roundPriceWithVat($price)->getAmount(),
+            $intlCurrency->getCurrencyCode()
+        );
+
+        return $this->normalizeSpaces($formattedPriceWithCurrencySymbol);
+    }
+
+    /**
+     * Inspired by formatCurrency() method, {@see \Shopsys\FrameworkBundle\Twig\PriceExtension}
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $price
+     * @return string
+     */
+    public function getFormattedPriceRoundedByCurrencyOnFrontend(Money $price): string
+    {
+        $firstDomainDefaultCurrency = $this->currencyFacade->getDomainDefaultCurrencyByDomainId(Domain::FIRST_DOMAIN_ID);
+        $firstDomainLocale = $this->localizationHelper->getFrontendLocale();
+        $currencyFormatter = $this->currencyFormatterFactory->createForCurrency($firstDomainLocale, $firstDomainDefaultCurrency);
 
         $intlCurrency = $this->intlCurrencyRepository->get($firstDomainDefaultCurrency->getCode(), $firstDomainLocale);
 
