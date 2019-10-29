@@ -57,6 +57,7 @@ class CurrencyGridFactory implements GridFactoryInterface
         $grid->addColumn('name', 'c.name', t('Name'), true);
         $grid->addColumn('code', 'c.code', t('Code'), true);
         $grid->addColumn('minFractionDigits', 'c.minFractionDigits', t('Min fraction digits'), true);
+        $grid->addColumn('roundingType', 'c.roundingType', t('Rounding type'), true);
         $grid->addColumn('exchangeRate', 'c.exchangeRate', t('Exchange rate'), true);
         $grid->setActionColumnClassAttribute('table-col table-col-10');
         $grid->addDeleteActionColumn('admin_currency_deleteconfirm', ['id' => 'c.id'])
@@ -67,6 +68,9 @@ class CurrencyGridFactory implements GridFactoryInterface
             [
                 'defaultCurrency' => $this->currencyFacade->getDefaultCurrency(),
                 'notAllowedToDeleteCurrencyIds' => $this->currencyFacade->getNotAllowedToDeleteCurrencyIds(),
+                'ROUNDING_TYPE_HUNDREDTHS' => Currency::ROUNDING_TYPE_HUNDREDTHS,
+                'ROUNDING_TYPE_FIFTIES' => Currency::ROUNDING_TYPE_FIFTIES,
+                'ROUNDING_TYPE_INTEGER' => Currency::ROUNDING_TYPE_INTEGER,
             ]
         );
 
