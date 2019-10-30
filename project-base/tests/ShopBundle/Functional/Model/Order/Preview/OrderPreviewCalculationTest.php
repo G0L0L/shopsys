@@ -190,5 +190,4 @@ class OrderPreviewCalculationTest extends FunctionalTestCase
         $this->assertNull($orderPreview->getTransport());
         $this->assertNull($orderPreview->getTransportPrice());
     }
-
 }

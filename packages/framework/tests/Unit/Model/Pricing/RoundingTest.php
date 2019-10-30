@@ -56,6 +56,8 @@ class RoundingTest extends TestCase
     }
 
     /**
+     * @deprecated test is deprecated and will be removed in the next major
+     *
      * @dataProvider roundingProvider
      * @param mixed $unroundedPrice
      * @param mixed $expectedAsPriceWithVat
@@ -162,6 +164,8 @@ class RoundingTest extends TestCase
     }
 
     /**
+     * @deprecated test is deprecated and will be removed in the next major
+     *
      * @dataProvider roundingPriceWithVatProvider
      * @param mixed $roundingType
      * @param mixed $inputPrice
