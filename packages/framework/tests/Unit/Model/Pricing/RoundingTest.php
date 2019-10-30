@@ -4,6 +4,9 @@ namespace Tests\FrameworkBundle\Unit\Model\Pricing;
 
 use PHPUnit\Framework\TestCase;
 use Shopsys\FrameworkBundle\Component\Money\Money;
+use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
+use Shopsys\FrameworkBundle\Model\Pricing\Currency\CurrencyData;
+use Shopsys\FrameworkBundle\Model\Pricing\Currency\Exception\InvalidCurrencyRoundingTypeException;
 use Shopsys\FrameworkBundle\Model\Pricing\PricingSetting;
 use Shopsys\FrameworkBundle\Model\Pricing\Rounding;
 use Tests\FrameworkBundle\Test\IsMoneyEqual;
@@ -80,6 +83,33 @@ class RoundingTest extends TestCase
         $this->assertThat($rounding->roundVatAmount($unroundedPrice), new IsMoneyEqual($expectedAsVatAmount));
     }
 
+    /**
+     * @dataProvider roundingProvider
+     * @param mixed $unroundedPrice
+     * @param mixed $expectedAsPriceWithVat
+     * @param mixed $expectedAsPriceWithoutVat
+     * @param mixed $expectedAsVatAmount
+     */
+    public function testRoundingWithCurrency(
+        $unroundedPrice,
+        $expectedAsPriceWithVat,
+        $expectedAsPriceWithoutVat,
+        $expectedAsVatAmount
+    ) {
+        $pricingSettingMock = $this->getMockBuilder(PricingSetting::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $rounding = new Rounding($pricingSettingMock);
+
+        $currencyData = new CurrencyData();
+        $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
+        $currency = new Currency($currencyData);
+
+        $this->assertThat($rounding->roundPriceWithVatWithCurrency($unroundedPrice, $currency), new IsMoneyEqual($expectedAsPriceWithVat));
+        $this->assertThat($rounding->roundPriceWithoutVat($unroundedPrice), new IsMoneyEqual($expectedAsPriceWithoutVat));
+        $this->assertThat($rounding->roundVatAmount($unroundedPrice), new IsMoneyEqual($expectedAsVatAmount));
+    }
+
     public function roundingPriceWithVatProvider()
     {
         return [
@@ -152,5 +182,57 @@ class RoundingTest extends TestCase
         $roundedPrice = $rounding->roundPriceWithVat($inputPrice);
 
         $this->assertThat($roundedPrice, new IsMoneyEqual($outputPrice));
+    }
+
+    /**
+     * @dataProvider roundingPriceWithVatProvider
+     * @param mixed $roundingType
+     * @param mixed $inputPrice
+     * @param mixed $outputPrice
+     */
+    public function testRoundingPriceWithVatWithCurrency(
+        $roundingType,
+        $inputPrice,
+        $outputPrice
+    ) {
+        $pricingSettingMock = $this->getMockBuilder(PricingSetting::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $currencyRoundingType = $this->converPricingRoundingTypeToCurrencyRoundingType($roundingType);
+
+        $currencyData = new CurrencyData();
+        $currencyData->roundingType = $currencyRoundingType;
+        $currency = new Currency($currencyData);
+
+        $rounding = new Rounding($pricingSettingMock);
+        $roundedPrice = $rounding->roundPriceWithVatWithCurrency($inputPrice, $currency);
+
+        $this->assertThat($roundedPrice, new IsMoneyEqual($outputPrice));
+    }
+
+    /**
+     * @param int $roundingType
+     * @return string
+     */
+    private function converPricingRoundingTypeToCurrencyRoundingType(int $roundingType)
+    {
+        switch ($roundingType) {
+            case 1:
+                return Currency::ROUNDING_TYPE_HUNDREDTHS;
+
+            case 2:
+                return Currency::ROUNDING_TYPE_FIFTIES;
+                break;
+
+            case 3:
+                return Currency::ROUNDING_TYPE_INTEGER;
+                break;
+
+            default:
+                throw new InvalidCurrencyRoundingTypeException(
+                    sprintf('Rounding type %s is not valid', $roundingType)
+                );
+        }
     }
 }
