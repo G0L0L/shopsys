@@ -96,3 +96,12 @@ Because of new functions, new tests have been introduced.
     }
 ```
 
+### Deprecated functions and test
+- these methods are deprecated and will be removed in the next major release
+    - `CurrencyFormatterFactory::create()` use `createForCurrency()` instead
+- these tests are deprecated and will be removed in the next major release
+    - `CartBoxPage::seeCountAndPriceInCartBox()`
+    - `CartPage::assertProductPriceRoundedCurrency()`
+    - `CartPage::assertTotalPriceWithVatRoundedByCurrency()`
+    - `NumberFormatHelper::getFormattedPriceWithCurrencySymbolOnFrontend()`
+    - `NumberFormatHelper::getFormattedPriceOnFrontend()`

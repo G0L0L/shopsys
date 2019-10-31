@@ -10,6 +10,8 @@ use Tests\ShopBundle\Acceptance\acceptance\PageObject\AbstractPage;
 class CartBoxPage extends AbstractPage
 {
     /**
+     * @deprecated test is deprecated and will be removed in the next major
+     *
      * @param int $expectedCount
      * @param string $expectedPrice
      */

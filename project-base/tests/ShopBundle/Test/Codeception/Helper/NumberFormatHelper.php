@@ -79,6 +79,8 @@ class NumberFormatHelper extends Module
     }
 
     /**
+     * @deprecated test is deprecated and will be removed in the next major.
+     *
      * Inspired by formatCurrency() method, {@see \Shopsys\FrameworkBundle\Twig\PriceExtension}
      * @param \Shopsys\FrameworkBundle\Component\Money\Money $price
      * @return string
@@ -121,6 +123,8 @@ class NumberFormatHelper extends Module
     }
 
     /**
+     * @deprecated test is deprecated and will be removed in the next major.
+     *
      * Inspired by formatCurrency() method, {@see \Shopsys\FrameworkBundle\Twig\PriceExtension}
      * @param \Shopsys\FrameworkBundle\Component\Money\Money $price
      * @return string
