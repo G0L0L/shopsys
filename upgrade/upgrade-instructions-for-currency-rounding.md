@@ -226,6 +226,39 @@ Because of new functions, new tests have been introduced.
             return $value->round(2);
      });
 ```
+- change test `BasePriceCalculationTest::testApplyCoefficient()`
+```diff
+    public function testApplyCoefficient(
+        Money $priceWithVat,
+        $vatPercent,
+        $coefficients,
+        Money $resultPriceWithVat,
+        Money $resultPriceWithoutVat,
+        Money $resultVatAmount
+    ) {
+    +   $currencyData = new CurrencyData();
+    +   $currencyData->name = 'currencyName';
+    +   $currencyData->code = Currency::CODE_CZK;
+    +   $currencyData->exchangeRate = '1.0';
+    +   $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
+    +   $currency = new Currency($currencyData);
+    +
+         $rounding = $this->getMockBuilder(Rounding::class)
+    -        ->setMethods(['roundPriceWithVat', 'roundPriceWithoutVat', 'roundVatAmount'])
+    +        ->setMethods(['roundPriceWithVatWithCurrency', 'roundPriceWithoutVat', 'roundVatAmount'])
+             ->disableOriginalConstructor()
+             ->getMock();
+    -    $rounding->expects($this->any())->method('roundPriceWithVat')->willReturnCallback(function (Money $value) {
+    +    $rounding->expects($this->any())->method('roundPriceWithVatWithCurrency')->willReturnCallback(function (Money $value) {
+            return $value->round(0);
+         });
+    ...
+         $vat = new Vat($vatData);
+    -    $resultPrice = $basePriceCalculation->applyCoefficients($price, $vat, $coefficients);
+    +    $resultPrice = $basePriceCalculation->applyCoefficients($price, $vat, $coefficients, $currency);
+ 
+         $this->assertThat($resultPrice->getPriceWithVat(), new IsMoneyEqual($resultPriceWithVat));
+```
 
 ### Deprecated functions and test
 - these methods are deprecated and will be removed in the next major release
