@@ -5,3 +5,6 @@
 * [Configuring Image Sizes for Individual Devices Width](./configuring-image-sizes-for-individual-devices-width.md)
 * [Frontend Troubleshooting](./frontend-troubleshooting.md)
 * [Understanding the Style Directory](./understanding-the-style-directory.md)
+
+## Implementation
+* [Graphic checkboxes and radiobuttons](./graphic-checkboxes-and-radiobuttons.md)
