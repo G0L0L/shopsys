@@ -356,6 +356,20 @@ Because of new functions, new tests have been introduced.
     +    $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
     +    $currency = new Currency($currencyData);
 ```
+- change test `TransportPriceCalculationTest::testCalculateIndependentPrice()`
+```diff
+         $vatData = new VatData();
+         $vatData->name = 'vat';
+         $vatData->percent = $vatPercent;
+         $vat = new Vat($vatData);
+    -    $currencyData = new CurrencyData();
+    +    $currencyData->name = 'currencyName';
+    +    $currencyData->code = Currency::CODE_CZK;
+    +    $currencyData->exchangeRate = '1.0';
+    +    $currencyData->minFractionDigits = 2;
+    +    $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
+    +    $currency = new Currency($currencyData);
+```
 
 ### Deprecated functions and test
 - these methods are deprecated and will be removed in the next major release
