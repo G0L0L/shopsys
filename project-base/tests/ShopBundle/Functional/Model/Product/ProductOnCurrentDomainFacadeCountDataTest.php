@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product;
 
+use App\DataFixtures\Demo\BrandDataFixture;
+use App\DataFixtures\Demo\CategoryDataFixture;
+use App\DataFixtures\Demo\FlagDataFixture;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Category\Category;
@@ -14,9 +17,6 @@ use Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterRepository;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterValue;
 use Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacadeInterface;
-use Shopsys\ShopBundle\DataFixtures\Demo\BrandDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\FlagDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 abstract class ProductOnCurrentDomainFacadeCountDataTest extends TransactionFunctionalTestCase
@@ -50,7 +50,7 @@ abstract class ProductOnCurrentDomainFacadeCountDataTest extends TransactionFunc
     abstract public function getProductOnCurrentDomainFacade(): ProductOnCurrentDomainFacadeInterface;
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Category\Category $category
+     * @param \App\Model\Category\Category $category
      * @param \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData $filterData
      * @param \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterCountData $expectedCountData
      * @dataProvider categoryTestCasesProvider

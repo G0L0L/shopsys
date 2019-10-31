@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Order;
 
+use App\DataFixtures\Demo\CountryDataFixture;
+use App\DataFixtures\Demo\CurrencyDataFixture;
+use App\DataFixtures\Demo\OrderStatusDataFixture;
+use App\Model\Order\Item\OrderItemData;
+use App\Model\Order\OrderData;
 use Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Cart\CartFacade;
@@ -14,11 +19,6 @@ use Shopsys\FrameworkBundle\Model\Order\Preview\OrderPreviewFactory;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentRepository;
 use Shopsys\FrameworkBundle\Model\Product\ProductRepository;
 use Shopsys\FrameworkBundle\Model\Transport\TransportRepository;
-use Shopsys\ShopBundle\DataFixtures\Demo\CountryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\CurrencyDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\OrderStatusDataFixture;
-use Shopsys\ShopBundle\Model\Order\Item\OrderItemData;
-use Shopsys\ShopBundle\Model\Order\OrderData;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class OrderFacadeTest extends TransactionFunctionalTestCase
@@ -46,9 +46,9 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
 
         $cartFacade->addProductToCart($product->getId(), 1);
 
-        /** @var \Shopsys\ShopBundle\Model\Transport\Transport $transport */
+        /** @var \App\Model\Transport\Transport $transport */
         $transport = $transportRepository->getById(1);
-        /** @var \Shopsys\ShopBundle\Model\Payment\Payment $payment */
+        /** @var \App\Model\Payment\Payment $payment */
         $payment = $paymentRepository->getById(1);
 
         $orderData = new OrderData();
@@ -117,10 +117,10 @@ class OrderFacadeTest extends TransactionFunctionalTestCase
         $orderFacade = $this->getContainer()->get(OrderFacade::class);
         /** @var \Shopsys\FrameworkBundle\Model\Order\OrderRepository $orderRepository */
         $orderRepository = $this->getContainer()->get(OrderRepository::class);
-        /** @var \Shopsys\ShopBundle\Model\Order\OrderDataFactory $orderDataFactory */
+        /** @var \App\Model\Order\OrderDataFactory $orderDataFactory */
         $orderDataFactory = $this->getContainer()->get(OrderDataFactoryInterface::class);
 
-        /** @var \Shopsys\ShopBundle\Model\Order\Order $order */
+        /** @var \App\Model\Order\Order $order */
         $order = $this->getReference('order_1');
 
         $this->assertCount(4, $order->getItems());

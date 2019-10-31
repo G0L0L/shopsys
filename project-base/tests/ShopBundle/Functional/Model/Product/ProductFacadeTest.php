@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product;
 
+use App\DataFixtures\Demo\AvailabilityDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
+use App\DataFixtures\Demo\UnitDataFixture;
+use App\DataFixtures\Demo\VatDataFixture;
+use App\Model\Product\Product;
 use ReflectionClass;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculationScheduler;
 use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
-use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\VatDataFixture;
-use Shopsys\ShopBundle\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ProductFacadeTest extends TransactionFunctionalTestCase
@@ -115,11 +115,11 @@ class ProductFacadeTest extends TransactionFunctionalTestCase
 
     public function testEditMarkProductForVisibilityRecalculation()
     {
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
         /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /** @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory $productDataFactory */
+        /** @var \App\Model\Product\ProductDataFactory $productDataFactory */
         $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
 
         $reflectionClass = new ReflectionClass(Product::class);
@@ -137,7 +137,7 @@ class ProductFacadeTest extends TransactionFunctionalTestCase
         $productFacade = $this->getContainer()->get(ProductFacade::class);
         $productPriceRecalculationScheduler = $this->getContainer()->get(ProductPriceRecalculationScheduler::class);
         $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . 1);
         $productId = $product->getId();
 

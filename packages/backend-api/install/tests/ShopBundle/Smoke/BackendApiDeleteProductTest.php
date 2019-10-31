@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Smoke;
 
+use App\DataFixtures\Demo\ProductDataFixture;
 use Ramsey\Uuid\Uuid;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Tests\ShopBundle\Test\OauthTestCase;
 
 /**

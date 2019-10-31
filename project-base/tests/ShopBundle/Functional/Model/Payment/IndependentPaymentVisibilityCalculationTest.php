@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Payment;
 
+use App\Model\Payment\Payment;
 use Shopsys\FrameworkBundle\Model\Payment\IndependentPaymentVisibilityCalculation;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
-use Shopsys\ShopBundle\Model\Payment\Payment;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalTestCase
@@ -116,7 +116,7 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat
      * @param bool[] $enabledForDomains
      * @param bool $hidden
-     * @return \Shopsys\ShopBundle\Model\Payment\Payment
+     * @return \App\Model\Payment\Payment
      */
     public function getDefaultPayment(Vat $vat, $enabledForDomains, $hidden)
     {
@@ -146,7 +146,7 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
     }
 
     /**
-     * @return \Shopsys\ShopBundle\Model\Payment\PaymentDataFactory
+     * @return \App\Model\Payment\PaymentDataFactory
      */
     public function getPaymentDataFactory()
     {

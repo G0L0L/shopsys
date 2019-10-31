@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\ReadModelBundle\Functional\Product\Action;
 
+use App\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\ReadModelBundle\Product\Action\ProductActionView;
 use Shopsys\ReadModelBundle\Product\Action\ProductActionViewFacade;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Tests\ShopBundle\Test\FunctionalTestCase;
 
 class ProductActionViewFacadeTest extends FunctionalTestCase

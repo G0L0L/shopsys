@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Order;
 
+use App\Model\Payment\Payment;
+use App\Model\Transport\Transport;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentFacade;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Transport\TransportFacade;
-use Shopsys\ShopBundle\Model\Payment\Payment;
-use Shopsys\ShopBundle\Model\Transport\Transport;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class OrderTransportAndPaymentTest extends TransactionFunctionalTestCase
@@ -375,7 +375,7 @@ class OrderTransportAndPaymentTest extends TransactionFunctionalTestCase
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat
      * @param bool[] $enabledForDomains
      * @param bool $hidden
-     * @return \Shopsys\ShopBundle\Model\Payment\Payment
+     * @return \App\Model\Payment\Payment
      */
     public function getDefaultPayment(Vat $vat, $enabledForDomains, $hidden)
     {
@@ -397,7 +397,7 @@ class OrderTransportAndPaymentTest extends TransactionFunctionalTestCase
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat
      * @param bool[] $enabledForDomains
      * @param bool $hidden
-     * @return \Shopsys\ShopBundle\Model\Transport\Transport
+     * @return \App\Model\Transport\Transport
      */
     public function getDefaultTransport(Vat $vat, $enabledForDomains, $hidden)
     {
@@ -428,7 +428,7 @@ class OrderTransportAndPaymentTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @return \Shopsys\ShopBundle\Model\Payment\PaymentDataFactory
+     * @return \App\Model\Payment\PaymentDataFactory
      */
     public function getPaymentDataFactory()
     {
@@ -436,7 +436,7 @@ class OrderTransportAndPaymentTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @return \Shopsys\ShopBundle\Model\Transport\TransportDataFactory
+     * @return \App\Model\Transport\TransportDataFactory
      */
     public function getTransportDataFactory()
     {

@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Payment;
 
+use App\Model\Payment\Payment;
+use App\Model\Transport\Transport;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Transport\TransportFacade;
-use Shopsys\ShopBundle\Model\Payment\Payment;
-use Shopsys\ShopBundle\Model\Transport\Transport;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class PaymentTest extends TransactionFunctionalTestCase
 {
     public function testRemoveTransportFromPaymentAfterDelete()
     {
-        /** @var \Shopsys\ShopBundle\Model\Payment\PaymentDataFactory $paymentDataFactory */
+        /** @var \App\Model\Payment\PaymentDataFactory $paymentDataFactory */
         $paymentDataFactory = $this->getContainer()->get(PaymentDataFactoryInterface::class);
-        /** @var \Shopsys\ShopBundle\Model\Transport\TransportDataFactory $transportDataFactory */
+        /** @var \App\Model\Transport\TransportDataFactory $transportDataFactory */
         $transportDataFactory = $this->getContainer()->get(TransportDataFactoryInterface::class);
         $em = $this->getEntityManager();
 

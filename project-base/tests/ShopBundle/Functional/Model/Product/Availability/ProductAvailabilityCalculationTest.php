@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product\Availability;
 
+use App\DataFixtures\Demo\AvailabilityDataFixture;
+use App\Model\Product\Product;
 use Doctrine\ORM\EntityManager;
 use Shopsys\FrameworkBundle\Model\Product\Availability\Availability;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityFacade;
@@ -12,8 +14,6 @@ use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductRepository;
 use Shopsys\FrameworkBundle\Model\Product\ProductSellingDeniedRecalculator;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibilityFacade;
-use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
-use Shopsys\ShopBundle\Model\Product\Product;
 use Tests\ShopBundle\Test\FunctionalTestCase;
 
 class ProductAvailabilityCalculationTest extends FunctionalTestCase

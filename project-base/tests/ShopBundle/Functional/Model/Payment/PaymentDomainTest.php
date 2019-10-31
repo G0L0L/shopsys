@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Payment;
 
+use App\Model\Payment\Payment;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Payment\PaymentFactoryInterface;
-use Shopsys\ShopBundle\Model\Payment\Payment;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class PaymentDomainTest extends TransactionFunctionalTestCase
@@ -15,7 +15,7 @@ class PaymentDomainTest extends TransactionFunctionalTestCase
     protected const SECOND_DOMAIN_ID = 2;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Payment\PaymentDataFactory
+     * @var \App\Model\Payment\PaymentDataFactory
      */
     private $paymentDataFactory;
 
@@ -81,8 +81,8 @@ class PaymentDomainTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Payment\Payment $payment
-     * @return \Shopsys\ShopBundle\Model\Payment\Payment
+     * @param \App\Model\Payment\Payment $payment
+     * @return \App\Model\Payment\Payment
      */
     private function getRefreshedPaymentFromDatabase(Payment $payment)
     {

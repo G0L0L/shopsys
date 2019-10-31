@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Cart\Watcher;
 
+use App\DataFixtures\Demo\PricingGroupDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
+use App\Model\Product\Product;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Cart\Cart;
@@ -18,9 +21,6 @@ use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser
 use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibility;
 use Shopsys\FrameworkBundle\Model\Product\ProductVisibilityRepository;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
-use Shopsys\ShopBundle\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CartWatcherTest extends TransactionFunctionalTestCase

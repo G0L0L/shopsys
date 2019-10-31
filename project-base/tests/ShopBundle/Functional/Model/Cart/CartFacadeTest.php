@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Cart;
 
+use App\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Cart\CartFacade;
@@ -18,7 +19,6 @@ use Shopsys\FrameworkBundle\Model\Localization\TranslatableListener;
 use Shopsys\FrameworkBundle\Model\Order\PromoCode\CurrentPromoCodeFacade;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceCalculationForUser;
 use Shopsys\FrameworkBundle\Model\Product\ProductRepository;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CartFacadeTest extends TransactionFunctionalTestCase
@@ -28,7 +28,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
         $customerIdentifier = new CustomerIdentifier('secretSessionHash');
         $anotherCustomerIdentifier = new CustomerIdentifier('anotherSecretSessionHash');
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
         $productId = $product->getId();
         $quantity = 10;
@@ -48,7 +48,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
 
     public function testCannotAddUnsellableProductToCart()
     {
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '6');
         $productId = $product->getId();
         $quantity = 1;
@@ -67,9 +67,9 @@ class CartFacadeTest extends TransactionFunctionalTestCase
 
     public function testCanChangeCartItemsQuantities()
     {
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product1 */
+        /** @var \App\Model\Product\Product $product1 */
         $product1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product2 */
+        /** @var \App\Model\Product\Product $product2 */
         $product2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '3');
 
         $customerIdentifier = new CustomerIdentifier('secretSessionHash');
@@ -99,7 +99,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
     {
         $customerIdentifier = new CustomerIdentifier('secretSessionHash');
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
         $quantity = 1;
 
@@ -124,9 +124,9 @@ class CartFacadeTest extends TransactionFunctionalTestCase
 
         $customerIdentifier = new CustomerIdentifier('secretSessionHash');
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product1 */
+        /** @var \App\Model\Product\Product $product1 */
         $product1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product2 */
+        /** @var \App\Model\Product\Product $product2 */
         $product2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '2');
         $quantity = 1;
 
@@ -153,7 +153,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
         $cartFacade = $this->getContainer()->get(CartFacade::class);
         /** @var \Shopsys\FrameworkBundle\Model\Cart\Item\CartItemFactory $cartItemFactory */
         $cartItemFactory = $this->getContainer()->get(CartItemFactoryInterface::class);
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . $productId);
 
         $cart = $cartFacade->getCartOfCurrentCustomerCreateIfNotExists();
@@ -252,7 +252,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @return \Shopsys\ShopBundle\Model\Product\Product
+     * @return \App\Model\Product\Product
      */
     private function createProduct()
     {

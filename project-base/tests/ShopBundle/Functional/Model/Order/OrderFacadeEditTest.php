@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Order;
 
+use App\DataFixtures\Demo\OrderDataFixture;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItem;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItemDataFactoryInterface;
@@ -11,7 +12,6 @@ use Shopsys\FrameworkBundle\Model\Order\Order;
 use Shopsys\FrameworkBundle\Model\Order\OrderData;
 use Shopsys\FrameworkBundle\Model\Order\OrderDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Order\OrderFacade;
-use Shopsys\ShopBundle\DataFixtures\Demo\OrderDataFixture;
 use Tests\FrameworkBundle\Test\IsMoneyEqual;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
@@ -23,7 +23,7 @@ final class OrderFacadeEditTest extends TransactionFunctionalTestCase
     private const TRANSPORT_ITEM_ID = 47;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Order\Order
+     * @var \App\Model\Order\Order
      */
     private $order;
 
@@ -33,12 +33,12 @@ final class OrderFacadeEditTest extends TransactionFunctionalTestCase
     private $orderFacade;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Order\OrderDataFactory
+     * @var \App\Model\Order\OrderDataFactory
      */
     private $orderDataFactory;
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Order\Item\OrderItemDataFactory
+     * @var \App\Model\Order\Item\OrderItemDataFactory
      */
     private $orderItemDataFactory;
 
@@ -238,9 +238,9 @@ final class OrderFacadeEditTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Order\Order $order
+     * @param \App\Model\Order\Order $order
      * @param string $name
-     * @return \Shopsys\ShopBundle\Model\Order\Item\OrderItem
+     * @return \App\Model\Order\Item\OrderItem
      */
     private function getOrderItemByName(Order $order, string $name): OrderItem
     {

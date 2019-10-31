@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Administrator\Security;
 
+use App\DataFixtures\Demo\AdministratorDataFixture;
 use Shopsys\FrameworkBundle\Model\Administrator\Activity\AdministratorActivityFacade;
 use Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorFrontSecurityFacade;
-use Shopsys\ShopBundle\DataFixtures\Demo\AdministratorDataFixture;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
@@ -27,7 +27,7 @@ class AdministratorFrontSecurityFacadeTest extends TransactionFunctionalTestCase
         /** @var \Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorFrontSecurityFacade $administratorFrontSecurityFacade */
         $administratorFrontSecurityFacade = $this->getContainer()->get(AdministratorFrontSecurityFacade::class);
 
-        /** @var \Shopsys\ShopBundle\Model\Administrator\Administrator $administrator */
+        /** @var \App\Model\Administrator\Administrator $administrator */
         $administrator = $this->getReference(AdministratorDataFixture::ADMINISTRATOR);
         $password = '';
         $roles = $administrator->getRoles();

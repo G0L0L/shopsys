@@ -3,25 +3,6 @@
     "type": "project",
     "description": "Full-featured basis for your e-commerce project on Shopsys Framework",
     "license": "proprietary",
-    "autoload": {
-        "psr-4": {
-            "Shopsys\\": [
-                "app/",
-                "src/Shopsys/"
-            ]
-        },
-        "classmap": [
-            "app/AppCache.php",
-            "app/AppKernel.php",
-            "app/Bootstrap.php",
-            "app/Environment.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
     "require": {
         "php": "^7.2",
         "ext-bcmath": "*",
@@ -56,33 +37,37 @@
         "incenteev/composer-parameter-handler": "^2.1.3",
         "intervention/image": "^2.3.14",
         "jms/translation-bundle": "^1.4.1",
-        "joschi127/doctrine-entity-override-bundle": "^0.5.0",
+        "joschi127/doctrine-entity-override-bundle": "^0.7.2",
         "league/flysystem": "^1.0",
         "phing/phing": "^2.16.1",
         "presta/sitemap-bundle": "^1.5.3",
         "prezent/doctrine-translatable-bundle": "^1.0.3",
-        "sensio/distribution-bundle": "^5.0.21",
         "sensio/framework-extra-bundle": "^3.0.29",
         "sensio/generator-bundle": "^3.1.7",
         "shopsys/doctrine-orm": "^2.6.2",
-        "shopsys/google-cloud-bundle": "9.0.x-dev",
+        "shopsys/google-cloud-bundle": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
         "shopsys/postgres-search-bundle": "^0.1",
-        "shopsys/migrations": "9.0.x-dev",
-        "shopsys/form-types-bundle": "9.0.x-dev",
-        "shopsys/framework": "9.0.x-dev",
-        "shopsys/frontend-api": "9.0.x-dev",
-        "shopsys/plugin-interface": "9.0.x-dev",
-        "shopsys/product-feed-heureka": "9.0.x-dev",
-        "shopsys/product-feed-heureka-delivery": "9.0.x-dev",
-        "shopsys/product-feed-zbozi": "9.0.x-dev",
-        "shopsys/product-feed-google": "9.0.x-dev",
-        "shopsys/read-model": "9.0.x-dev",
+        "shopsys/migrations": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
+        "shopsys/form-types-bundle": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
+        "shopsys/framework": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
+        "shopsys/frontend-api": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
+        "shopsys/plugin-interface": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
+        "shopsys/product-feed-heureka": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
+        "shopsys/product-feed-heureka-delivery": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
+        "shopsys/product-feed-zbozi": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
+        "shopsys/product-feed-google": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
+        "shopsys/read-model": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
         "snc/redis-bundle": "^2.1.8",
         "stof/doctrine-extensions-bundle": "^1.3.0",
         "symfony/assetic-bundle": "^2.8.2",
+        "symfony/flex": "^1.4",
+        "symfony/form": "^3.4",
         "symfony/monolog-bundle": "^3.3.1",
+        "symfony/security-bundle": "^3.4",
         "symfony/swiftmailer-bundle": "^3.2.2",
-        "symfony/symfony": "^3.4.8",
+        "symfony/translation": "^3.4",
+        "symfony/twig-bundle": "^3.4",
+        "symfony/validator": "^3.4",
         "symfony-cmf/routing": "^2.0.3",
         "symfony-cmf/routing-bundle": "^2.0.3",
         "tracy/tracy": "^2.4.13",
@@ -97,43 +82,178 @@
         "codeception/codeception": "^2.4.0",
         "phpstan/phpstan": "^0.11",
         "phpunit/phpunit": "^7.0",
-        "shopsys/coding-standards": "9.0.x-dev",
-        "shopsys/http-smoke-testing": "9.0.x-dev",
+        "shopsys/coding-standards": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
+        "shopsys/http-smoke-testing": "dev-mg-weird-flex-but-ok as 9.0.x-dev",
         "phpstan/phpstan-doctrine": "^0.11.2",
         "phpstan/phpstan-phpunit": "^0.11.2",
         "sspooky13/yaml-standards": "^4.2.5"
     },
     "conflict": {
         "symfony/dependency-injection": "3.4.15|3.4.16",
-        "twig/twig": "2.6.1"
+        "twig/twig": "2.6.1",
+        "symfony/symfony": "*"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true,
+        "component-dir": "web/components",
+        "platform": {
+            "php": "7.2"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "../framework/packages/backend-api",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/coding-standards",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/form-types-bundle",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/framework",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/frontend-api",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/google-cloud-bundle",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/http-smoke-testing",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/migrations",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/monorepo-tools",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/plugin-interface",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/product-feed-google",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/product-feed-heureka",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/product-feed-heureka-delivery",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/product-feed-zbozi",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "../framework/packages/read-model",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Shopsys\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
     },
     "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
+        },
         "post-install-cmd": [
+            "@auto-scripts",
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Shopsys\\Environment::checkEnvironment",
             "Shopsys\\FrameworkBundle\\Command\\ComposerScriptHandler::postInstall"
         ],
         "post-update-cmd": [
+            "@auto-scripts",
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Shopsys\\Environment::checkEnvironment",
             "Shopsys\\FrameworkBundle\\Command\\ComposerScriptHandler::postUpdate"
         ]
     },
-    "config": {
-        "preferred-install": "dist",
-        "component-dir": "web/components",
-        "platform": {
-            "php": "7.2"
-        }
-    },
     "extra": {
-        "symfony-app-dir": "app",
-        "symfony-bin-dir": "bin",
-        "symfony-tests-dir": "tests",
-        "symfony-var-dir": "var",
-        "symfony-web-dir": "web",
+        "symfony": {
+            "allow-contrib": true,
+            "require": "^3.4"
+        },
         "incenteev-parameters": [
             {
                 "file": "app/config/parameters.yml",

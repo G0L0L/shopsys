@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Transport;
 
+use App\Model\Transport\Transport;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Transport\IndependentTransportVisibilityCalculation;
 use Shopsys\FrameworkBundle\Model\Transport\TransportDataFactoryInterface;
-use Shopsys\ShopBundle\Model\Transport\Transport;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class IndependentTransportVisibilityCalculationTest extends TransactionFunctionalTestCase
@@ -119,7 +119,7 @@ class IndependentTransportVisibilityCalculationTest extends TransactionFunctiona
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat
      * @param array $enabledForDomains
      * @param bool $hidden
-     * @return \Shopsys\ShopBundle\Model\Transport\Transport
+     * @return \App\Model\Transport\Transport
      */
     public function getDefaultTransport(Vat $vat, $enabledForDomains, $hidden)
     {
@@ -150,7 +150,7 @@ class IndependentTransportVisibilityCalculationTest extends TransactionFunctiona
     }
 
     /**
-     * @return \Shopsys\ShopBundle\Model\Transport\TransportDataFactory
+     * @return \App\Model\Transport\TransportDataFactory
      */
     public function getTransportDataFactory()
     {

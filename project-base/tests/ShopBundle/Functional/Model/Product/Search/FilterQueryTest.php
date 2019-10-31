@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product\Search;
 
+use App\DataFixtures\Demo\PricingGroupDataFixture;
 use Elasticsearch\Client;
 use Shopsys\FrameworkBundle\Component\Elasticsearch\ElasticsearchStructureManager;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\Search\FilterQuery;
 use Shopsys\FrameworkBundle\Model\Product\Search\FilterQueryFactory;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class FilterQueryTest extends TransactionFunctionalTestCase

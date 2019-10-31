@@ -23,16 +23,16 @@ class CategoryRepositoryTest extends TransactionFunctionalTestCase
         $categoryRepository = $this->getContainer()->get(CategoryRepository::class);
         /** @var \Shopsys\FrameworkBundle\Model\Category\CategoryVisibilityRepository $categoryVisibilityRepository */
         $categoryVisibilityRepository = $this->getContainer()->get(CategoryVisibilityRepository::class);
-        /** @var \Shopsys\ShopBundle\Model\Category\CategoryDataFactory $categoryDataFactory */
+        /** @var \App\Model\Category\CategoryDataFactory $categoryDataFactory */
         $categoryDataFactory = $this->getContainer()->get(CategoryDataFactoryInterface::class);
 
         $categoryData = $categoryDataFactory->create();
         $categoryData->name = ['en' => 'name', 'cs' => 'name'];
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $rootCategory */
+        /** @var \App\Model\Category\Category $rootCategory */
         $rootCategory = $categoryFacade->getRootCategory();
         $categoryData->parent = $rootCategory;
 
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $parentCategory */
+        /** @var \App\Model\Category\Category $parentCategory */
         $parentCategory = $categoryFacade->create($categoryData);
 
         $categoryData->enabled[self::FIRST_DOMAIN_ID] = false;
@@ -55,16 +55,16 @@ class CategoryRepositoryTest extends TransactionFunctionalTestCase
         $categoryRepository = $this->getContainer()->get(CategoryRepository::class);
         /** @var \Shopsys\FrameworkBundle\Model\Category\CategoryVisibilityRepository $categoryVisibilityRepository */
         $categoryVisibilityRepository = $this->getContainer()->get(CategoryVisibilityRepository::class);
-        /** @var \Shopsys\ShopBundle\Model\Category\CategoryDataFactory $categoryDataFactory */
+        /** @var \App\Model\Category\CategoryDataFactory $categoryDataFactory */
         $categoryDataFactory = $this->getContainer()->get(CategoryDataFactoryInterface::class);
 
         $categoryData = $categoryDataFactory->create();
         $categoryData->name = ['en' => 'name', 'cs' => 'name'];
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $rootCategory */
+        /** @var \App\Model\Category\Category $rootCategory */
         $rootCategory = $categoryFacade->getRootCategory();
         $categoryData->parent = $rootCategory;
 
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $parentCategory */
+        /** @var \App\Model\Category\Category $parentCategory */
         $parentCategory = $categoryFacade->create($categoryData);
 
         $categoryData->parent = $parentCategory;

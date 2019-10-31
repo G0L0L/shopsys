@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Category;
 
+use App\Model\Category\Category;
 use Shopsys\FrameworkBundle\Model\Category\CategoryDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Category\CategoryFactoryInterface;
-use Shopsys\ShopBundle\Model\Category\Category;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CategoryDomainTest extends TransactionFunctionalTestCase
@@ -18,7 +18,7 @@ class CategoryDomainTest extends TransactionFunctionalTestCase
     protected const DEMONSTRATIVE_SEO_H1 = 'Demonstrative seo H1';
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Category\CategoryDataFactory
+     * @var \App\Model\Category\CategoryDataFactory
      */
     private $categoryDataFactory;
 
@@ -128,8 +128,8 @@ class CategoryDomainTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Category\Category $category
-     * @return \Shopsys\ShopBundle\Model\Category\Category
+     * @param \App\Model\Category\Category $category
+     * @return \App\Model\Category\Category
      */
     private function getRefreshedCategoryFromDatabase(Category $category)
     {

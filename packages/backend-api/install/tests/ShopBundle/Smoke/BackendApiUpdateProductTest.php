@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Smoke;
 
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
 use Tests\ShopBundle\Test\OauthTestCase;
 
 /**

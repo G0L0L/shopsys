@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Cart;
 
+use App\DataFixtures\Demo\UnitDataFixture;
+use App\Model\Product\Product;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Cart\Cart;
 use Shopsys\FrameworkBundle\Model\Cart\Item\CartItem;
@@ -13,8 +15,6 @@ use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\Availability\Availability;
 use Shopsys\FrameworkBundle\Model\Product\Availability\AvailabilityData;
 use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
-use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
-use Shopsys\ShopBundle\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class CartItemTest extends TransactionFunctionalTestCase

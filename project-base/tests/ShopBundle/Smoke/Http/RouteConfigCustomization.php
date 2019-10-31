@@ -4,6 +4,13 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Smoke\Http;
 
+use App\Controller\Front\ProductController;
+use App\DataFixtures\Demo\OrderDataFixture;
+use App\DataFixtures\Demo\PersonalDataAccessRequestDataFixture;
+use App\DataFixtures\Demo\PricingGroupDataFixture;
+use App\DataFixtures\Demo\UnitDataFixture;
+use App\DataFixtures\Demo\UserDataFixture;
+use App\DataFixtures\Demo\VatDataFixture;
 use Shopsys\FrameworkBundle\Component\DataFixture\PersistentReferenceFacade;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Router\Security\RouteCsrfProtector;
@@ -13,13 +20,6 @@ use Shopsys\HttpSmokeTesting\RequestDataSet;
 use Shopsys\HttpSmokeTesting\RouteConfig;
 use Shopsys\HttpSmokeTesting\RouteConfigCustomizer;
 use Shopsys\HttpSmokeTesting\RouteInfo;
-use Shopsys\ShopBundle\Controller\Front\ProductController;
-use Shopsys\ShopBundle\DataFixtures\Demo\OrderDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\PersonalDataAccessRequestDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\UnitDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\UserDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\VatDataFixture;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class RouteConfigCustomization
@@ -286,7 +286,7 @@ class RouteConfigCustomization
                     ->setParameter('id', 1);
             })
             ->customizeByRouteName('front_customer_order_detail_unregistered', function (RouteConfig $config) {
-                /** @var \Shopsys\ShopBundle\Model\Order\Order $order */
+                /** @var \App\Model\Order\Order $order */
                 $order = $this->getPersistentReference(OrderDataFixture::ORDER_PREFIX . '1');
 
                 $debugNote = sprintf('Use hash of order n. %s for unregistered access.', $order->getNumber());
@@ -294,7 +294,7 @@ class RouteConfigCustomization
                     ->setParameter('urlHash', $order->getUrlHash());
             })
             ->customizeByRouteName('front_customer_order_detail_registered', function (RouteConfig $config) {
-                /** @var \Shopsys\ShopBundle\Model\Order\Order $order */
+                /** @var \App\Model\Order\Order $order */
                 $order = $this->getPersistentReference(OrderDataFixture::ORDER_PREFIX . '1');
 
                 $debugNote = sprintf('Log as demo user "Jaromír Jágr" on front-end to access order n. %s.', $order->getNumber());
@@ -351,7 +351,7 @@ class RouteConfigCustomization
                     ]);
             })
             ->customizeByRouteName('front_registration_set_new_password', function (RouteConfig $config) {
-                /** @var \Shopsys\ShopBundle\Model\Customer\User $customer */
+                /** @var \App\Model\Customer\User $customer */
                 $customer = $this->getPersistentReference(UserDataFixture::USER_WITH_RESET_PASSWORD_HASH);
 
                 $config->changeDefaultRequestDataSet('See new password page for customer with reset password hash.')

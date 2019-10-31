@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product;
 
+use App\DataFixtures\Demo\AvailabilityDataFixture;
 use Shopsys\FrameworkBundle\Model\Product\Product;
 use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\FrameworkBundle\Model\Product\ProductVariantFacade;
-use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 final class ProductVariantCreationTest extends TransactionFunctionalTestCase
@@ -118,8 +118,8 @@ final class ProductVariantCreationTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Product\Product[] $expectedVariants
-     * @param \Shopsys\ShopBundle\Model\Product\Product $mainVariant
+     * @param \App\Model\Product\Product[] $expectedVariants
+     * @param \App\Model\Product\Product $mainVariant
      */
     private function assertContainsAllVariants(array $expectedVariants, Product $mainVariant): void
     {

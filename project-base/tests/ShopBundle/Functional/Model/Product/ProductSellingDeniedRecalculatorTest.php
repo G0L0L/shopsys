@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product;
 
+use App\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductFacade;
 use Shopsys\FrameworkBundle\Model\Product\ProductSellingDeniedRecalculator;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ProductSellingDeniedRecalculatorTest extends TransactionFunctionalTestCase
@@ -19,16 +19,16 @@ class ProductSellingDeniedRecalculatorTest extends TransactionFunctionalTestCase
         $productSellingDeniedRecalculator = $this->getContainer()->get(ProductSellingDeniedRecalculator::class);
         /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /** @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory $productDataFactory */
+        /** @var \App\Model\Product\ProductDataFactory $productDataFactory */
         $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant1 */
+        /** @var \App\Model\Product\Product $variant1 */
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant2 */
+        /** @var \App\Model\Product\Product $variant2 */
         $variant2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '54');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant3 */
+        /** @var \App\Model\Product\Product $variant3 */
         $variant3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '69');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $mainVariant */
+        /** @var \App\Model\Product\Product $mainVariant */
         $mainVariant = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '148');
 
         $variant1productData = $productDataFactory->createFromProduct($variant1);
@@ -55,16 +55,16 @@ class ProductSellingDeniedRecalculatorTest extends TransactionFunctionalTestCase
         $productSellingDeniedRecalculator = $this->getContainer()->get(ProductSellingDeniedRecalculator::class);
         /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /** @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory $productDataFactory */
+        /** @var \App\Model\Product\ProductDataFactory $productDataFactory */
         $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant1 */
+        /** @var \App\Model\Product\Product $variant1 */
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant2 */
+        /** @var \App\Model\Product\Product $variant2 */
         $variant2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '54');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant3 */
+        /** @var \App\Model\Product\Product $variant3 */
         $variant3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '69');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $mainVariant */
+        /** @var \App\Model\Product\Product $mainVariant */
         $mainVariant = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '148');
 
         $variant1productData = $productDataFactory->createFromProduct($variant1);
@@ -97,16 +97,16 @@ class ProductSellingDeniedRecalculatorTest extends TransactionFunctionalTestCase
         $productSellingDeniedRecalculator = $this->getContainer()->get(ProductSellingDeniedRecalculator::class);
         /** @var \Shopsys\FrameworkBundle\Model\Product\ProductFacade $productFacade */
         $productFacade = $this->getContainer()->get(ProductFacade::class);
-        /** @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory $productDataFactory */
+        /** @var \App\Model\Product\ProductDataFactory $productDataFactory */
         $productDataFactory = $this->getContainer()->get(ProductDataFactoryInterface::class);
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant1 */
+        /** @var \App\Model\Product\Product $variant1 */
         $variant1 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '53');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant2 */
+        /** @var \App\Model\Product\Product $variant2 */
         $variant2 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '54');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $variant3 */
+        /** @var \App\Model\Product\Product $variant3 */
         $variant3 = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '69');
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $mainVariant */
+        /** @var \App\Model\Product\Product $mainVariant */
         $mainVariant = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '148');
 
         $mainVariantproductData = $productDataFactory->createFromProduct($mainVariant);

@@ -133,7 +133,7 @@
             <arg value="-r"/>
             <arg value="echo date('YmdHis');"/>
         </exec>
-        <copy file="${path.app}/config/parameters_version.yml.dist" tofile="${path.app}/config/parameters_version.yml" overwrite="true">
+        <copy file="${path.root}/config/parameters_version.yml.dist" tofile="${path.root}/config/parameters_version.yml" overwrite="true">
             <filterchain>
                 <replacetokens begintoken="%%" endtoken="%%">
                     <token key="version" value="${version}"/>

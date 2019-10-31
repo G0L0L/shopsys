@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Unit\Model\Article;
 
+use App\Model\Article\Article;
+use App\Model\Article\ArticleData;
 use DateTime;
 use PHPUnit\Framework\TestCase;
-use Shopsys\ShopBundle\Model\Article\Article;
-use Shopsys\ShopBundle\Model\Article\ArticleData;
 
 class ArticleTest extends TestCase
 {

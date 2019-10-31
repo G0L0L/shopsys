@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\EntityExtension;
 
+use App\Model\Category\Category;
+use App\Model\Order\Order;
+use App\Model\Order\Order as ExtendedOrder;
+use App\Model\Product\Brand\Brand as ExtendedBrand;
+use App\Model\Product\Product;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
@@ -12,11 +17,6 @@ use Shopsys\FrameworkBundle\Component\EntityExtension\EntityNameResolver;
 use Shopsys\FrameworkBundle\Model\Order\Item\OrderItem;
 use Shopsys\FrameworkBundle\Model\Product\Brand\Brand;
 use Shopsys\FrameworkBundle\Model\Product\ProductTranslation;
-use Shopsys\ShopBundle\Model\Category\Category;
-use Shopsys\ShopBundle\Model\Order\Order;
-use Shopsys\ShopBundle\Model\Order\Order as ExtendedOrder;
-use Shopsys\ShopBundle\Model\Product\Brand\Brand as ExtendedBrand;
-use Shopsys\ShopBundle\Model\Product\Product;
 use Tests\ShopBundle\Functional\EntityExtension\Model\CategoryManyToManyBidirectionalEntity;
 use Tests\ShopBundle\Functional\EntityExtension\Model\CategoryOneToManyBidirectionalEntity;
 use Tests\ShopBundle\Functional\EntityExtension\Model\CategoryOneToOneBidirectionalEntity;

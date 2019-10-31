@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product\Filter;
 
+use App\DataFixtures\Demo\CategoryDataFixture;
+use App\DataFixtures\Demo\PricingGroupDataFixture;
 use Shopsys\FrameworkBundle\Model\Product\Filter\FlagFilterChoiceRepository;
 use Shopsys\FrameworkBundle\Model\Product\Flag\Flag;
-use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class FlagFilterChoiceRepositoryTest extends TransactionFunctionalTestCase
@@ -82,7 +82,7 @@ class FlagFilterChoiceRepositoryTest extends TransactionFunctionalTestCase
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroup */
         $pricingGroup = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
 
-        /** @var \Shopsys\ShopBundle\Model\Category\Category $category */
+        /** @var \App\Model\Category\Category $category */
         $category = $this->getReference($categoryReferenceName);
 
         return $repository->getFlagFilterChoicesInCategory(1, $pricingGroup, 'en', $category);

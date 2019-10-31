@@ -1,0 +1,25 @@
+{% extends 'Front/Layout/layoutWithoutPanel.html.twig' %}
+
+{% block title %}
+    {{- article.seoTitle|default(article.name) -}}
+{% endblock %}
+
+{% block meta_description %}
+    {{- article.seoMetaDescription|default(getSeoMetaDescription()) -}}
+{% endblock %}
+
+{% block main_content %}
+    <h1>
+        {% if article.seoH1 is not null %}
+            {{ article.seoH1 }}
+        {% else %}
+            {{ article.name }}
+        {% endif %}
+    </h1>
+
+    <p>{{ article.createdAt|formatDate }}</p>
+
+    <div class="in-user-text">
+        {{ article.text|raw }}
+    </div>
+{% endblock %}

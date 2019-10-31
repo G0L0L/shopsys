@@ -1,0 +1,12 @@
+shopsys_shop_admin:
+    resource: "../src/Controller/Admin/"
+    prefix: /admin
+    type: annotation
+
+
+shopsys_framework:
+    resource: "@ShopsysFrameworkBundle/Resources/config/routing.yml"
+
+shopsys_frontend_api:
+    resource: "@ShopsysFrontendApiBundle/Resources/config/routing.yml"
+    prefix: /graphql

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product;
 
+use App\DataFixtures\Demo\AvailabilityDataFixture;
+use App\Model\Product\Product;
 use Shopsys\FrameworkBundle\Model\Product\ProductDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\ProductFactoryInterface;
-use Shopsys\ShopBundle\DataFixtures\Demo\AvailabilityDataFixture;
-use Shopsys\ShopBundle\Model\Product\Product;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ProductDomainTest extends TransactionFunctionalTestCase
@@ -21,7 +21,7 @@ class ProductDomainTest extends TransactionFunctionalTestCase
     protected const DEMONSTRATIVE_SHORT_DESCRIPTION = 'Demonstrative short description';
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Product\ProductDataFactory
+     * @var \App\Model\Product\ProductDataFactory
      */
     private $productDataFactory;
 
@@ -101,8 +101,8 @@ class ProductDomainTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Product\Product $product
-     * @return \Shopsys\ShopBundle\Model\Product\Product
+     * @param \App\Model\Product\Product $product
+     * @return \App\Model\Product\Product
      */
     private function getRefreshedProductFromDatabase(Product $product)
     {

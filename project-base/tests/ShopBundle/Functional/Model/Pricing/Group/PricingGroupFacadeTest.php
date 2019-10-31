@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Pricing\Group;
 
+use App\DataFixtures\Demo\PricingGroupDataFixture;
+use App\DataFixtures\Demo\ProductDataFixture;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerFacade;
 use Shopsys\FrameworkBundle\Model\Customer\UserDataFactoryInterface;
@@ -11,8 +13,6 @@ use Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupData;
 use Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductCalculatedPrice;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\ProductPriceRecalculator;
-use Shopsys\ShopBundle\DataFixtures\Demo\PricingGroupDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\ProductDataFixture;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class PricingGroupFacadeTest extends TransactionFunctionalTestCase
@@ -20,7 +20,7 @@ class PricingGroupFacadeTest extends TransactionFunctionalTestCase
     public function testCreate()
     {
         $em = $this->getEntityManager();
-        /** @var \Shopsys\ShopBundle\Model\Product\Product $product */
+        /** @var \App\Model\Product\Product $product */
         $product = $this->getReference(ProductDataFixture::PRODUCT_PREFIX . '1');
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroupFacade $pricingGroupFacade */
         $pricingGroupFacade = $this->getContainer()->get(PricingGroupFacade::class);
@@ -53,9 +53,9 @@ class PricingGroupFacadeTest extends TransactionFunctionalTestCase
         $pricingGroupToDelete = $pricingGroupFacade->create($pricingGroupData, $domainId);
         /** @var \Shopsys\FrameworkBundle\Model\Pricing\Group\PricingGroup $pricingGroupToReplaceWith */
         $pricingGroupToReplaceWith = $this->getReference(PricingGroupDataFixture::PRICING_GROUP_ORDINARY_DOMAIN_1);
-        /** @var \Shopsys\ShopBundle\Model\Customer\User $user */
+        /** @var \App\Model\Customer\User $user */
         $user = $customerFacade->getUserById(1);
-        /** @var \Shopsys\ShopBundle\Model\Customer\UserDataFactory $userDataFactory */
+        /** @var \App\Model\Customer\UserDataFactory $userDataFactory */
         $userDataFactory = $this->getContainer()->get(UserDataFactoryInterface::class);
         $userData = $userDataFactory->createFromUser($user);
         /** @var \Shopsys\FrameworkBundle\Model\Customer\CustomerDataFactory $customerDataFactory */

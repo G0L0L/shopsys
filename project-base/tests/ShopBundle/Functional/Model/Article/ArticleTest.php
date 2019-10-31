@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Article;
 
+use App\Model\Article\Article;
 use DateTime;
 use Shopsys\FrameworkBundle\Model\Article\ArticleDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Article\ArticleFactoryInterface;
-use Shopsys\ShopBundle\Model\Article\Article;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class ArticleTest extends TransactionFunctionalTestCase
 {
     /**
-     * @var \Shopsys\ShopBundle\Model\Article\ArticleDataFactory
+     * @var \App\Model\Article\ArticleDataFactory
      */
     private $articleDataFactory;
 
@@ -55,7 +55,7 @@ class ArticleTest extends TransactionFunctionalTestCase
 
         $this->em->clear();
 
-        /** @var \Shopsys\ShopBundle\Model\Article\Article $refreshedArticle */
+        /** @var \App\Model\Article\Article $refreshedArticle */
         $refreshedArticle = $this->em->getRepository(Article::class)->find($articleId);
 
         $this->assertSame('Demonstrative name', $refreshedArticle->getName());

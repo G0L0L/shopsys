@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product\Brand;
 
+use App\Model\Product\Brand\Brand;
 use Shopsys\FrameworkBundle\Model\Product\Brand\BrandDataFactoryInterface;
 use Shopsys\FrameworkBundle\Model\Product\Brand\BrandFactoryInterface;
-use Shopsys\ShopBundle\Model\Product\Brand\Brand;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 class BrandDomainTest extends TransactionFunctionalTestCase
@@ -17,7 +17,7 @@ class BrandDomainTest extends TransactionFunctionalTestCase
     protected const DEMONSTRATIVE_SEO_H1 = 'Demonstrative seo h1';
 
     /**
-     * @var \Shopsys\ShopBundle\Model\Product\Brand\BrandDataFactory
+     * @var \App\Model\Product\Brand\BrandDataFactory
      */
     private $brandDataFactory;
 
@@ -78,8 +78,8 @@ class BrandDomainTest extends TransactionFunctionalTestCase
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Product\Brand\Brand $brand
-     * @return \Shopsys\ShopBundle\Model\Product\Brand\Brand
+     * @param \App\Model\Product\Brand\Brand $brand
+     * @return \App\Model\Product\Brand\Brand
      */
     private function getRefreshedBrandFromDatabase(Brand $brand)
     {

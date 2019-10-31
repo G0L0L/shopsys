@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\EntityExtension\Model;
 
+use App\Model\Category\Category;
+use App\Model\Category\CategoryData;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Shopsys\ShopBundle\Model\Category\Category;
-use Shopsys\ShopBundle\Model\Category\CategoryData;
 
 /**
  * @ORM\Entity
@@ -125,7 +125,7 @@ class ExtendedCategory extends Category
     protected $manyToManySelfReferencingInverseEntities;
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Category\CategoryData $categoryData
+     * @param \App\Model\Category\CategoryData $categoryData
      */
     public function __construct(CategoryData $categoryData)
     {

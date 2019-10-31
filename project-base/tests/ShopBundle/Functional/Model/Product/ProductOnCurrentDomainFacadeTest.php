@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Product;
 
+use App\DataFixtures\Demo\BrandDataFixture;
+use App\DataFixtures\Demo\CategoryDataFixture;
+use App\DataFixtures\Demo\FlagDataFixture;
+use App\Model\Category\Category;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Component\Paginator\PaginationResult;
 use Shopsys\FrameworkBundle\Model\Product\Brand\Brand;
@@ -13,10 +17,6 @@ use Shopsys\FrameworkBundle\Model\Product\Listing\ProductListOrderingConfig;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterRepository;
 use Shopsys\FrameworkBundle\Model\Product\Parameter\ParameterValue;
 use Shopsys\FrameworkBundle\Model\Product\ProductOnCurrentDomainFacadeInterface;
-use Shopsys\ShopBundle\DataFixtures\Demo\BrandDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\CategoryDataFixture;
-use Shopsys\ShopBundle\DataFixtures\Demo\FlagDataFixture;
-use Shopsys\ShopBundle\Model\Category\Category;
 use Tests\ShopBundle\Test\TransactionFunctionalTestCase;
 
 abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTestCase
@@ -86,7 +86,7 @@ abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTes
     {
         $category = $this->getReference(CategoryDataFixture::CATEGORY_PRINTERS);
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Brand\Brand $brandCanon */
+        /** @var \App\Model\Product\Brand\Brand $brandCanon */
         $brandCanon = $this->getReference(BrandDataFixture::BRAND_CANON);
         $productFilterData = new ProductFilterData();
         $productFilterData->brands = [$brandCanon];
@@ -99,9 +99,9 @@ abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTes
     {
         $category = $this->getReference(CategoryDataFixture::CATEGORY_PRINTERS);
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Brand\Brand $brandHp */
+        /** @var \App\Model\Product\Brand\Brand $brandHp */
         $brandHp = $this->getReference(BrandDataFixture::BRAND_HP);
-        /** @var \Shopsys\ShopBundle\Model\Product\Brand\Brand $brandCanon */
+        /** @var \App\Model\Product\Brand\Brand $brandCanon */
         $brandCanon = $this->getReference(BrandDataFixture::BRAND_CANON);
         $productFilterData = new ProductFilterData();
         $productFilterData->brands = [$brandCanon, $brandHp];
@@ -253,7 +253,7 @@ abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTes
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData $productFilterData
-     * @param \Shopsys\ShopBundle\Model\Category\Category $category
+     * @param \App\Model\Category\Category $category
      * @return \Shopsys\FrameworkBundle\Component\Paginator\PaginationResult
      */
     public function getPaginationResultInCategory(ProductFilterData $productFilterData, Category $category): PaginationResult
@@ -271,7 +271,7 @@ abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTes
     }
 
     /**
-     * @param \Shopsys\ShopBundle\Model\Product\Brand\Brand $brand
+     * @param \App\Model\Product\Brand\Brand $brand
      * @return \Shopsys\FrameworkBundle\Component\Paginator\PaginationResult
      */
     public function getPaginatedProductsForBrand(Brand $brand): PaginationResult
@@ -296,7 +296,7 @@ abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTes
         $flagTopProduct = $this->getReference(FlagDataFixture::FLAG_NEW_PRODUCT);
         $productFilterData->flags = [$flagTopProduct];
 
-        /** @var \Shopsys\ShopBundle\Model\Product\Brand\Brand $brandCanon */
+        /** @var \App\Model\Product\Brand\Brand $brandCanon */
         $brandCanon = $this->getReference(BrandDataFixture::BRAND_CANON);
         $productFilterData->brands = [$brandCanon];
 
@@ -334,7 +334,7 @@ abstract class ProductOnCurrentDomainFacadeTest extends TransactionFunctionalTes
 
     /**
      * @param \Shopsys\FrameworkBundle\Model\Product\Filter\ProductFilterData $productFilterData
-     * @param \Shopsys\ShopBundle\Model\Category\Category $category
+     * @param \App\Model\Category\Category $category
      * @param int $page
      * @param int $limit
      * @return \Shopsys\FrameworkBundle\Component\Paginator\PaginationResult

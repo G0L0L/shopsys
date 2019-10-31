@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\ShopBundle\Functional\Model\Order\Preview;
 
+use App\Model\Payment\Payment;
+use App\Model\Transport\Transport;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Order\Item\QuantifiedItemPrice;
@@ -19,8 +21,6 @@ use Shopsys\FrameworkBundle\Model\Pricing\Vat\VatData;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\QuantifiedProductDiscountCalculation;
 use Shopsys\FrameworkBundle\Model\Product\Pricing\QuantifiedProductPriceCalculation;
 use Shopsys\FrameworkBundle\Model\Transport\TransportPriceCalculation;
-use Shopsys\ShopBundle\Model\Payment\Payment;
-use Shopsys\ShopBundle\Model\Transport\Transport;
 use Tests\FrameworkBundle\Test\IsMoneyEqual;
 use Tests\ShopBundle\Test\FunctionalTestCase;
 

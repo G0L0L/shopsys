@@ -5,10 +5,8 @@
     "license": "proprietary",
     "autoload": {
         "psr-4": {
-            "Shopsys\\": [
-                "project-base/app/",
-                "project-base/src/Shopsys/"
-            ],
+            "App\\": "project-base/src/",
+            "Shopsys\\": "project-base/config/",
             "Shopsys\\BackendApiBundle\\": "packages/backend-api/src/",
             "Shopsys\\CodingStandards\\": "packages/coding-standards/src/",
             "Shopsys\\FormTypesBundle\\": "packages/form-types-bundle/src/",
@@ -25,10 +23,7 @@
             "Shopsys\\FrameworkBundle\\": "packages/framework/src/"
         },
         "classmap": [
-            "project-base/app/AppCache.php",
-            "project-base/app/AppKernel.php",
-            "project-base/app/Bootstrap.php",
-            "project-base/app/Environment.php"
+            "project-base/config/Environment.php"
         ],
         "files": [
             "packages/framework/src/Component/Filesystem/Flysystem/VolumeDriver.php",
@@ -111,7 +106,7 @@
         "jms/metadata": "^1.6",
         "jms/translation-bundle": "^1.4.1",
         "jms/serializer-bundle": "^2.4",
-        "joschi127/doctrine-entity-override-bundle": "^0.5.0",
+        "joschi127/doctrine-entity-override-bundle": "^0.7.2",
         "knplabs/knp-menu-bundle": "^2.2.1",
         "league/flysystem": "^1.0",
         "litipk/php-bignumbers": "^0.8",
@@ -127,7 +122,6 @@
         "psr/log": "^1.0",
         "ramsey/uuid": "^3.8",
         "roave/better-reflection": "^3.5",
-        "sensio/distribution-bundle": "^5.0.21",
         "sensio/framework-extra-bundle": "^3.0.29",
         "sensio/generator-bundle": "^3.1.7",
         "shopsys/doctrine-orm": "^2.6.2",
@@ -143,17 +137,28 @@
         "symfony/assetic-bundle": "^2.8.2",
         "symfony-cmf/routing": "^2.0.3",
         "symfony-cmf/routing-bundle": "^2.0.3",
+        "symfony/dotenv": "^3.4",
+        "symfony/flex": "^1.4",
+        "symfony/form": "^3.4",
         "symfony/monolog-bridge": "^3.0.0",
         "symfony/monolog-bundle": "^3.3.1",
+        "symfony/security-bundle": "^3.4",
         "symfony/proxy-manager-bridge": "^3.4",
         "symfony/swiftmailer-bundle": "^3.2.2",
-        "symfony/symfony": "^3.4.8",
+        "symfony/translation": "^3.4",
+        "symfony/twig-bundle": "^3.4",
+        "symfony/validator": "^3.4",
         "tracy/tracy": "^2.4.13",
         "twig/extensions": "^1.5.1",
         "twig/twig": "^2.4.8",
         "vasek-purchart/console-errors-bundle": "^1.0.1",
         "webmozart/assert": "^1.4",
-        "trikoder/oauth2-bundle": "^1.1"
+        "trikoder/oauth2-bundle": "^1.1",
+        "symfony/templating": "^3.4",
+        "symfony/debug": "^3.4",
+        "symfony/web-profiler-bundle": "^3.4",
+        "symfony/web-server-bundle": "^3.4",
+        "symfony/debug-bundle": "^3.4"
     },
     "require-dev": {
         "ext-pgsql": "*",
@@ -161,6 +166,8 @@
         "codeception/phpunit-wrapper": "^7.0",
         "nette/utils": "^2.5",
         "phpstan/phpstan": "^0.11",
+        "symfony/var-dumper": "^3.4",
+        "phpunit/phpunit": "^7.0",
         "symplify/easy-coding-standard-tester": "^5.2.17",
         "symplify/monorepo-builder": "^5.2.17",
         "shopsys/changelog-linker": "^5.5.0",
@@ -171,21 +178,22 @@
     "conflict": {
         "symfony/dependency-injection": "3.4.15|3.4.16",
         "symplify/better-phpdoc-parser": "5.4.14|5.4.15",
-        "twig/twig": "2.6.1"
+        "twig/twig": "2.6.1",
+        "symfony/symfony": "*"
     },
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Shopsys\\Environment::checkEnvironment",
-            "Shopsys\\FrameworkBundle\\Command\\ComposerScriptHandler::postInstall"
+            "Shopsys\\Environment::checkEnvironment"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Shopsys\\Environment::checkEnvironment",
-            "Shopsys\\FrameworkBundle\\Command\\ComposerScriptHandler::postUpdate"
-        ]
+            "Shopsys\\Environment::checkEnvironment"
+        ],
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        }
     },
     "config": {
         "preferred-install": "dist",
@@ -195,18 +203,22 @@
         }
     },
     "extra": {
-        "symfony-app-dir": "project-base/app",
-        "symfony-bin-dir": "project-base/bin",
-        "symfony-tests-dir": "project-base/tests",
-        "symfony-var-dir": "project-base/var",
-        "symfony-web-dir": "project-base/web",
+        "bin-dir": "project-base/bin",
+        "config-dir": "project-base/config",
+        "src-dir": "project-base/src",
+        "var-dir": "project-base/var",
+        "public-dir": "project-base/web",
+        "symfony": {
+            "allow-contrib": true,
+            "require": "^3.4"
+        },
         "incenteev-parameters": [
             {
-                "file": "project-base/app/config/parameters.yml",
+                "file": "project-base/config/parameters.yml",
                 "keep-outdated": true
             },
             {
-                "file": "project-base/app/config/parameters_test.yml",
+                "file": "project-base/config/parameters_test.yml",
                 "keep-outdated": true
             }
         ]
