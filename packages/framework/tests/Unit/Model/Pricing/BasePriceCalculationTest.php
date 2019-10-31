@@ -80,6 +80,46 @@ class BasePriceCalculationTest extends TestCase
         $this->assertThat($basePrice->getVatAmount(), new IsMoneyEqual($basePriceVatAmount));
     }
 
+    /**
+     * @dataProvider calculateBasePriceProvider
+     * @param int $inputPriceType
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $inputPrice
+     * @param mixed $vatPercent
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $basePriceWithoutVat
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $basePriceWithVat
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $basePriceVatAmount
+     */
+    public function testCalculateBasePriceRoundedByCurrency(
+        int $inputPriceType,
+        Money $inputPrice,
+        $vatPercent,
+        Money $basePriceWithoutVat,
+        Money $basePriceWithVat,
+        Money $basePriceVatAmount
+    ) {
+        $pricingSettingMock = $this->getMockBuilder(PricingSetting::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $rounding = new Rounding($pricingSettingMock);
+        $priceCalculation = new PriceCalculation($rounding);
+        $basePriceCalculation = new BasePriceCalculation($priceCalculation, $rounding);
+
+        $vatData = new VatData();
+        $vatData->name = 'vat';
+        $vatData->percent = $vatPercent;
+        $vat = new Vat($vatData);
+
+        $currencyData = new CurrencyData();
+        $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
+        $currency = new Currency($currencyData);
+
+        $basePrice = $basePriceCalculation->calculateBasePriceWithCurrency($inputPrice, $inputPriceType, $vat, $currency);
+
+        $this->assertThat($basePrice->getPriceWithoutVat(), new IsMoneyEqual($basePriceWithoutVat));
+        $this->assertThat($basePrice->getPriceWithVat(), new IsMoneyEqual($basePriceWithVat));
+        $this->assertThat($basePrice->getVatAmount(), new IsMoneyEqual($basePriceVatAmount));
+    }
+
     public function applyCoefficientProvider()
     {
         return [

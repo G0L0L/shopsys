@@ -178,6 +178,48 @@ Because of new functions, new tests have been introduced.
         }
     }
 ```
+- add test for `PaymentPriceCalculationTest`
+```
+    /**
+     * @dataProvider calculateBasePriceProvider
+     * @param int $inputPriceType
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $inputPrice
+     * @param mixed $vatPercent
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $basePriceWithoutVat
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $basePriceWithVat
+     * @param \Shopsys\FrameworkBundle\Component\Money\Money $basePriceVatAmount
+     */
+    public function testCalculateBasePriceRoundedByCurrency(
+        int $inputPriceType,
+        Money $inputPrice,
+        $vatPercent,
+        Money $basePriceWithoutVat,
+        Money $basePriceWithVat,
+        Money $basePriceVatAmount
+    ) {
+        $pricingSettingMock = $this->getMockBuilder(PricingSetting::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $rounding = new Rounding($pricingSettingMock);
+        $priceCalculation = new PriceCalculation($rounding);
+        $basePriceCalculation = new BasePriceCalculation($priceCalculation, $rounding);
+
+        $vatData = new VatData();
+        $vatData->name = 'vat';
+        $vatData->percent = $vatPercent;
+        $vat = new Vat($vatData);
+
+        $currencyData = new CurrencyData();
+        $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
+        $currency = new Currency($currencyData);
+
+        $basePrice = $basePriceCalculation->calculateBasePriceWithCurrency($inputPrice, $inputPriceType, $vat, $currency);
+
+        $this->assertThat($basePrice->getPriceWithoutVat(), new IsMoneyEqual($basePriceWithoutVat));
+        $this->assertThat($basePrice->getPriceWithVat(), new IsMoneyEqual($basePriceWithVat));
+        $this->assertThat($basePrice->getVatAmount(), new IsMoneyEqual($basePriceVatAmount));
+    }
+```
 
 ### Change existing tests to use rounding by currency
 - change test `OrderPreviewCalculationTest::testCalculatePreviewWithTransportAndPayment()`
@@ -258,6 +300,61 @@ Because of new functions, new tests have been introduced.
     +    $resultPrice = $basePriceCalculation->applyCoefficients($price, $vat, $coefficients, $currency);
  
          $this->assertThat($resultPrice->getPriceWithVat(), new IsMoneyEqual($resultPriceWithVat));
+```
+- change test `PaymentPriceCalculationTest::testCalculateIndependentPrice()`
+```diff
+         $pricingSettingMock = $this->getMockBuilder(PricingSetting::class)
+    -        ->setMethods(['getInputPriceType', 'getRoundingType'])
+    +        ->setMethods(['getInputPriceType'])
+             ->disableOriginalConstructor()
+             ->getMock();
+         $pricingSettingMock
+             ->expects($this->any())->method('getInputPriceType')
+                 ->willReturn($inputPriceType);
+    -    $pricingSettingMock
+    -        ->expects($this->any())->method('getRoundingType')
+    -             ->willReturn(PricingSetting::ROUNDING_TYPE_INTEGER);
+  
+    ...
+
+         $vatData->percent = $vatPercent;
+         $vat = new Vat($vatData);
+    -    $currency = new Currency(new CurrencyData());
+    +    $currencyData = new CurrencyData();
+    +    $currencyData->name = 'currencyName';
+    +    $currencyData->code = Currency::CODE_CZK;
+    +    $currencyData->exchangeRate = '1.0';
+    +    $currencyData->minFractionDigits = 2;
+    +    $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
+    +    $currency = new Currency($currencyData);
+```
+- change test `PaymentPriceCalculationTest::testCalculatePrice()`
+```diff
+         $priceLimit = Money::create(1000);
+         $pricingSettingMock = $this->getMockBuilder(PricingSetting::class)
+    -        ->setMethods(['getInputPriceType', 'getRoundingType', 'getFreeTransportAndPaymentPriceLimit'])
+    +        ->setMethods(['getInputPriceType', 'getFreeTransportAndPaymentPriceLimit'])
+             ->disableOriginalConstructor()
+             ->getMock();
+         $pricingSettingMock
+             ->expects($this->any())->method('getInputPriceType')
+                 ->willReturn($inputPriceType);
+    -    $pricingSettingMock
+    -        ->expects($this->any())->method('getRoundingType')
+    -             ->willReturn(PricingSetting::ROUNDING_TYPE_INTEGER);
+  
+    ...
+
+         $vatData->percent = $vatPercent;
+         $vat = new Vat($vatData);
+    -    $currency = new Currency(new CurrencyData());
+    +    $currencyData = new CurrencyData();
+    +    $currencyData->name = 'currencyName';
+    +    $currencyData->code = Currency::CODE_CZK;
+    +    $currencyData->exchangeRate = '1.0';
+    +    $currencyData->minFractionDigits = 2;
+    +    $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
+    +    $currency = new Currency($currencyData);
 ```
 
 ### Deprecated functions and test
