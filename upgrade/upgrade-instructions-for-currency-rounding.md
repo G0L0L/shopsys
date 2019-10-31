@@ -202,6 +202,30 @@ Because of new functions, new tests have been introduced.
     + $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscountsWithCurrency')
        ->willReturn($quantifiedProductsDiscounts);
 ```
+- change test `OrderPriceCalculationTest::testCalculateOrderRoundingPriceDown()`
+```diff
+     $roundingMock = $this->getMockBuilder(Rounding::class)
+     - ->setMethods(['roundPriceWithVat'])
+     + ->setMethods(['roundPriceWithVatWithCurrency'])
+       ->disableOriginalConstructor()
+       ->getMock();
+     - $roundingMock->expects($this->any())->method('roundPriceWithVat')->willReturnCallback(function (Money $value) {
+     + $roundingMock->expects($this->any())->method('roundPriceWithVatWithCurrency')->willReturnCallback(function (Money $value) {
+            return $value->round(2);
+     });
+```
+- change test `OrderPriceCalculationTest::testCalculateOrderRoundingPriceUp()`
+```diff
+     $roundingMock = $this->getMockBuilder(Rounding::class)
+     - ->setMethods(['roundPriceWithVat'])
+     + ->setMethods(['roundPriceWithVatWithCurrency'])
+       ->disableOriginalConstructor()
+       ->getMock();
+     - $roundingMock->expects($this->any())->method('roundPriceWithVat')->willReturnCallback(function (Money $value) {
+     + $roundingMock->expects($this->any())->method('roundPriceWithVatWithCurrency')->willReturnCallback(function (Money $value) {
+            return $value->round(2);
+     });
+```
 
 ### Deprecated functions and test
 - these methods are deprecated and will be removed in the next major release
