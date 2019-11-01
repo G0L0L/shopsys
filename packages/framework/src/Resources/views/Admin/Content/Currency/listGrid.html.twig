@@ -76,6 +76,20 @@
     </span>
 {% endblock %}
 
+{% block grid_value_cell_edit_id_name %}
+    <span class="form-edit-block form-edit-block--size-1">
+        {% form_theme form '@ShopsysFramework/Admin/Form/theme.html.twig' %}
+        {{ form_widget(form.name, {attr: {class: "input--half-width"}}) }}
+    </span>
+{% endblock %}
+
+{% block grid_value_cell_edit_id_code %}
+    <span class="form-edit-block form-edit-block--size-1">
+        {% form_theme form '@ShopsysFramework/Admin/Form/theme.html.twig' %}
+        {{ form_widget(form.code, {attr: {class: "input--half-width"}}) }}
+    </span>
+{% endblock %}
+
 {% block grid_no_data %}
     {{ 'No currencies found. You have to create some first.'|trans }}
 {% endblock %}
