@@ -31,6 +31,8 @@ class BasePriceCalculation
     }
 
     /**
+     * @deprecated Will be removed in the next major release, use BasePriceCalculation::calculateBasePriceWithCurrency instead
+     *
      * @param \Shopsys\FrameworkBundle\Component\Money\Money $inputPrice
      * @param int $inputPriceType
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat
@@ -38,6 +40,8 @@ class BasePriceCalculation
      */
     public function calculateBasePrice(Money $inputPrice, int $inputPriceType, Vat $vat): Price
     {
+        @trigger_error(sprintf('The %s() method is deprecated and will be removed in the next major. Use the BasePriceCalculation::calculateBasePriceWithCurrency instead.', __METHOD__), E_USER_DEPRECATED);
+
         $basePriceWithVat = $this->getBasePriceWithVat($inputPrice, $inputPriceType, $vat);
         $vatAmount = $this->priceCalculation->getVatAmountByPriceWithVat($basePriceWithVat, $vat);
         $basePriceWithoutVat = $this->rounding->roundPriceWithoutVat($basePriceWithVat->subtract($vatAmount));
@@ -86,6 +90,8 @@ class BasePriceCalculation
     }
 
     /**
+     * @deprecated Will be removed in the next major release, use BasePriceCalculation::getBasePriceWithVatWithCurrency instead
+     *
      * @param \Shopsys\FrameworkBundle\Component\Money\Money $inputPrice
      * @param int $inputPriceType
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat
@@ -93,6 +99,8 @@ class BasePriceCalculation
      */
     protected function getBasePriceWithVat(Money $inputPrice, int $inputPriceType, Vat $vat): Money
     {
+        @trigger_error(sprintf('The %s() method is deprecated and will be removed in the next major. Use the BasePriceCalculation::getBasePriceWithVatWithCurrency instead.', __METHOD__), E_USER_DEPRECATED);
+
         switch ($inputPriceType) {
             case PricingSetting::INPUT_PRICE_TYPE_WITH_VAT:
                 return $this->rounding->roundPriceWithVat($inputPrice);

@@ -24,11 +24,15 @@ class Rounding
     }
 
     /**
+     * @deprecated Will be removed in the next major release, use Rounding::roundPriceWithVatWithCurrency instead
+     *
      * @param \Shopsys\FrameworkBundle\Component\Money\Money $priceWithVat
      * @return \Shopsys\FrameworkBundle\Component\Money\Money
      */
     public function roundPriceWithVat(Money $priceWithVat): Money
     {
+        @trigger_error(sprintf('The %s() method is deprecated and will be removed in the next major. Use the Rounding::roundPriceWithVatWithCurrency instead.', __METHOD__), E_USER_DEPRECATED);
+
         $roundingType = $this->pricingSetting->getRoundingType();
 
         switch ($roundingType) {

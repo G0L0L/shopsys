@@ -376,6 +376,9 @@ Because of new functions, new tests have been introduced.
     - `CurrencyFormatterFactory::create()` use `createForCurrency()` instead
     - `QuantifiedProductDiscountCalculation::calculateDiscount()` use `calculateDiscountWithCurrency()` instead
     - `QuantifiedProductDiscountCalculation::calculateDiscounts()` use `calculateDiscountsWithCurrency()`
+    - `Rounding::roundPriceWithVat()` use `roundPriceWithVatWithCurrency()`
+    - `BasePriceCalculation::getBasePriceWithVat()` use `getBasePriceWithVatWithCurrency()`
+    - `BasePriceCalculation::calculateBasePrice()` use `calculateBasePriceWithCurrency()`
 - these tests are deprecated and will be removed in the next major release
     - `CartBoxPage::seeCountAndPriceInCartBox()`
     - `CartPage::assertProductPriceRoundedCurrency()`
@@ -384,3 +387,4 @@ Because of new functions, new tests have been introduced.
     - `NumberFormatHelper::getFormattedPriceOnFrontend()`
     - `RoundingTest::testRounding()`
     - `RoundingTest::testRoundingPriceWithVat()`
+    - `BasePriceCalculationTest::testCalculateBasePrice()`

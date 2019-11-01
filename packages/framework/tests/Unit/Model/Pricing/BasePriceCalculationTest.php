@@ -40,6 +40,8 @@ class BasePriceCalculationTest extends TestCase
     }
 
     /**
+     * @deprecated test is deprecated and will be removed in the next major
+     *
      * @dataProvider calculateBasePriceProvider
      * @param int $inputPriceType
      * @param \Shopsys\FrameworkBundle\Component\Money\Money $inputPrice
