@@ -125,8 +125,6 @@ class GenerateMigrationCommand extends AbstractCommand
         $bundles = $this->getAllBundleNamesExceptVendor();
         array_unshift($bundles, $applicationMigrationLocation->getNamespace());
 
-        var_dump($bundles);
-
         if (count($bundles) > 1) {
             $chosenBundle = $io->choice(
                 'There is more than one bundle available as the destination of generated migrations. Which bundle would you like to choose?',
