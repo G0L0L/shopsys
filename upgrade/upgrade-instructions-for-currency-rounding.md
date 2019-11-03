@@ -270,11 +270,11 @@ Because of new functions, new tests have been introduced.
 ```diff
      $roundingMock = $this->getMockBuilder(Rounding::class)
      - ->setMethods(['roundPriceWithVat'])
-     + ->setMethods(['roundPriceWithVatWithCurrency'])
+     + ->setMethods(['roundPriceWithVatByCurrency'])
        ->disableOriginalConstructor()
        ->getMock();
      - $roundingMock->expects($this->any())->method('roundPriceWithVat')->willReturnCallback(function (Money $value) {
-     + $roundingMock->expects($this->any())->method('roundPriceWithVatWithCurrency')->willReturnCallback(function (Money $value) {
+     + $roundingMock->expects($this->any())->method('roundPriceWithVatByCurrency')->willReturnCallback(function (Money $value) {
             return $value->round(2);
      });
 ```
@@ -282,11 +282,11 @@ Because of new functions, new tests have been introduced.
 ```diff
      $roundingMock = $this->getMockBuilder(Rounding::class)
      - ->setMethods(['roundPriceWithVat'])
-     + ->setMethods(['roundPriceWithVatWithCurrency'])
+     + ->setMethods(['roundPriceWithVatByCurrency'])
        ->disableOriginalConstructor()
        ->getMock();
      - $roundingMock->expects($this->any())->method('roundPriceWithVat')->willReturnCallback(function (Money $value) {
-     + $roundingMock->expects($this->any())->method('roundPriceWithVatWithCurrency')->willReturnCallback(function (Money $value) {
+     + $roundingMock->expects($this->any())->method('roundPriceWithVatByCurrency')->willReturnCallback(function (Money $value) {
             return $value->round(2);
      });
 ```
