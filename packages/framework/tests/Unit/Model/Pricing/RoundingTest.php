@@ -92,7 +92,7 @@ class RoundingTest extends TestCase
      * @param mixed $expectedAsPriceWithoutVat
      * @param mixed $expectedAsVatAmount
      */
-    public function testRoundingWithCurrency(
+    public function testRoundingByCurrency(
         $unroundedPrice,
         $expectedAsPriceWithVat,
         $expectedAsPriceWithoutVat,
@@ -107,7 +107,7 @@ class RoundingTest extends TestCase
         $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
         $currency = new Currency($currencyData);
 
-        $this->assertThat($rounding->roundPriceWithVatWithCurrency($unroundedPrice, $currency), new IsMoneyEqual($expectedAsPriceWithVat));
+        $this->assertThat($rounding->roundPriceWithVatByCurrency($unroundedPrice, $currency), new IsMoneyEqual($expectedAsPriceWithVat));
         $this->assertThat($rounding->roundPriceWithoutVat($unroundedPrice), new IsMoneyEqual($expectedAsPriceWithoutVat));
         $this->assertThat($rounding->roundVatAmount($unroundedPrice), new IsMoneyEqual($expectedAsVatAmount));
     }
@@ -194,7 +194,7 @@ class RoundingTest extends TestCase
      * @param mixed $inputPrice
      * @param mixed $outputPrice
      */
-    public function testRoundingPriceWithVatWithCurrency(
+    public function testRoundingPriceWithVatByCurrency(
         $roundingType,
         $inputPrice,
         $outputPrice
@@ -210,7 +210,7 @@ class RoundingTest extends TestCase
         $currency = new Currency($currencyData);
 
         $rounding = new Rounding($pricingSettingMock);
-        $roundedPrice = $rounding->roundPriceWithVatWithCurrency($inputPrice, $currency);
+        $roundedPrice = $rounding->roundPriceWithVatByCurrency($inputPrice, $currency);
 
         $this->assertThat($roundedPrice, new IsMoneyEqual($outputPrice));
     }

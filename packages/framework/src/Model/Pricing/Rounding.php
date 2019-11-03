@@ -57,7 +57,7 @@ class Rounding
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
      * @return \Shopsys\FrameworkBundle\Component\Money\Money
      */
-    public function roundPriceWithVatWithCurrency(Money $priceWithVat, Currency $currency): Money
+    public function roundPriceWithVatByCurrency(Money $priceWithVat, Currency $currency): Money
     {
         $roundingType = $currency->getRoundingType();
         switch ($roundingType) {

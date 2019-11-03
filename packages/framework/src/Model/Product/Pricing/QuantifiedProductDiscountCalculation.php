@@ -67,14 +67,14 @@ class QuantifiedProductDiscountCalculation
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
      * @return \Shopsys\FrameworkBundle\Model\Pricing\Price|null
      */
-    protected function calculateDiscountWithCurrency(
+    protected function calculateDiscountRoundedByCurrency(
         QuantifiedItemPrice $quantifiedItemPrice,
         string $discountPercent,
         Currency $currency
     ): ?Price {
         $vat = $quantifiedItemPrice->getVat();
         $multiplier = (string)($discountPercent / 100);
-        $priceWithVat = $this->rounding->roundPriceWithVatWithCurrency(
+        $priceWithVat = $this->rounding->roundPriceWithVatByCurrency(
             $quantifiedItemPrice->getTotalPrice()->getPriceWithVat()->multiply($multiplier),
             $currency
         );
@@ -118,14 +118,14 @@ class QuantifiedProductDiscountCalculation
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
      * @return \Shopsys\FrameworkBundle\Model\Pricing\Price[]
      */
-    public function calculateDiscountsWithCurrency(array $quantifiedItemsPrices, ?string $discountPercent, Currency $currency): array
+    public function calculateDiscountsRoundedByCurrency(array $quantifiedItemsPrices, ?string $discountPercent, Currency $currency): array
     {
         $quantifiedItemsDiscounts = [];
         foreach ($quantifiedItemsPrices as $quantifiedItemIndex => $quantifiedItemPrice) {
             if ($discountPercent === null) {
                 $quantifiedItemsDiscounts[$quantifiedItemIndex] = null;
             } else {
-                $quantifiedItemsDiscounts[$quantifiedItemIndex] = $this->calculateDiscountWithCurrency(
+                $quantifiedItemsDiscounts[$quantifiedItemIndex] = $this->calculateDiscountRoundedByCurrency(
                     $quantifiedItemPrice,
                     $discountPercent,
                     $currency

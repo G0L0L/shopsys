@@ -46,7 +46,7 @@ Because of new functions, new tests have been introduced.
         $intlCurrency = $this->intlCurrencyRepository->get($firstDomainDefaultCurrency->getCode(), $firstDomainLocale);
 
         $formattedPriceWithCurrencySymbol = $currencyFormatter->format(
-            $this->rounding->roundPriceWithVatWithCurrency($price, $firstDomainDefaultCurrency)->getAmount(),
+            $this->rounding->roundPriceWithVatByCurrency($price, $firstDomainDefaultCurrency)->getAmount(),
             $intlCurrency->getCurrencyCode()
         );
 
@@ -68,7 +68,7 @@ Because of new functions, new tests have been introduced.
         $intlCurrency = $this->intlCurrencyRepository->get($firstDomainDefaultCurrency->getCode(), $firstDomainLocale);
 
         $formattedPriceWithCurrencySymbol = $currencyFormatter->format(
-            $this->rounding->roundPriceWithVatWithCurrency($price, $firstDomainDefaultCurrency)->getAmount(),
+            $this->rounding->roundPriceWithVatByCurrency($price, $firstDomainDefaultCurrency)->getAmount(),
             $intlCurrency->getCurrencyCode()
         );
 
@@ -127,7 +127,7 @@ Because of new functions, new tests have been introduced.
      * @param mixed $expectedAsPriceWithoutVat
      * @param mixed $expectedAsVatAmount
      */
-   public function testRoundingWithCurrency(
+   public function testRoundingByCurrency(
         $unroundedPrice,
         $expectedAsPriceWithVat,
         $expectedAsPriceWithoutVat,
@@ -142,7 +142,7 @@ Because of new functions, new tests have been introduced.
         $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
         $currency = new Currency($currencyData);
 
-        $this->assertThat($rounding->roundPriceWithVatWithCurrency($unroundedPrice, $currency), new IsMoneyEqual($expectedAsPriceWithVat));
+        $this->assertThat($rounding->roundPriceWithVatByCurrency($unroundedPrice, $currency), new IsMoneyEqual($expectedAsPriceWithVat));
         $this->assertThat($rounding->roundPriceWithoutVat($unroundedPrice), new IsMoneyEqual($expectedAsPriceWithoutVat));
         $this->assertThat($rounding->roundVatAmount($unroundedPrice), new IsMoneyEqual($expectedAsVatAmount));
     }
@@ -154,7 +154,7 @@ Because of new functions, new tests have been introduced.
      * @param mixed $inputPrice
      * @param mixed $outputPrice
      */
-    public function testRoundingPriceWithVatWithCurrency(
+    public function testRoundingPriceWithVatByCurrency(
         $roundingType,
         $inputPrice,
         $outputPrice
@@ -170,7 +170,7 @@ Because of new functions, new tests have been introduced.
         $currency = new Currency($currencyData);
 
         $rounding = new Rounding($pricingSettingMock);
-        $roundedPrice = $rounding->roundPriceWithVatWithCurrency($inputPrice, $currency);
+        $roundedPrice = $rounding->roundPriceWithVatByCurrency($inputPrice, $currency);
 
         $this->assertThat($roundedPrice, new IsMoneyEqual($outputPrice));
     }
@@ -248,22 +248,22 @@ Because of new functions, new tests have been introduced.
 ```diff
     $quantifiedProductDiscountCalculationMock = $this->getMockBuilder(QuantifiedProductDiscountCalculation::class)
     - ->setMethods(['calculateDiscounts', '__construct'])
-    + ->setMethods(['calculateDiscountsWithCurrency', '__construct'])
+    + ->setMethods(['calculateDiscountsRoundedByCurrency', '__construct'])
       ->disableOriginalConstructor()
       ->getMock();
     - $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscounts')
-    + $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscountsWithCurrency')
+    + $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscountsRoundedByCurrency')
        ->willReturn($quantifiedProductsDiscounts);
 ```
 - change test `OrderPreviewCalculationTest::testCalculatePreviewWithoutTransportAndPayment()`
 ```diff
     $quantifiedProductDiscountCalculationMock = $this->getMockBuilder(QuantifiedProductDiscountCalculation::class)
     - ->setMethods(['calculateDiscounts', '__construct'])
-    + ->setMethods(['calculateDiscountsWithCurrency', '__construct'])
+    + ->setMethods(['calculateDiscountsRoundedByCurrency', '__construct'])
       ->disableOriginalConstructor()
       ->getMock();
     - $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscounts')
-    + $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscountsWithCurrency')
+    + $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscountsRoundedByCurrency')
        ->willReturn($quantifiedProductsDiscounts);
 ```
 - change test `OrderPriceCalculationTest::testCalculateOrderRoundingPriceDown()`

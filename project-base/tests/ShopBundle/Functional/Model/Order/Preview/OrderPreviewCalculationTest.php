@@ -52,10 +52,10 @@ class OrderPreviewCalculationTest extends FunctionalTestCase
             ->willReturn($quantifiedItemsPrices);
 
         $quantifiedProductDiscountCalculationMock = $this->getMockBuilder(QuantifiedProductDiscountCalculation::class)
-            ->setMethods(['calculateDiscountsWithCurrency', '__construct'])
+            ->setMethods(['calculateDiscountsRoundedByCurrency', '__construct'])
             ->disableOriginalConstructor()
             ->getMock();
-        $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscountsWithCurrency')
+        $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscountsRoundedByCurrency')
             ->willReturn($quantifiedProductsDiscounts);
 
         $paymentPriceCalculationMock = $this->getMockBuilder(PaymentPriceCalculation::class)
@@ -137,10 +137,10 @@ class OrderPreviewCalculationTest extends FunctionalTestCase
             ->willReturn($quantifiedItemsPrices);
 
         $quantifiedProductDiscountCalculationMock = $this->getMockBuilder(QuantifiedProductDiscountCalculation::class)
-            ->setMethods(['calculateDiscountsWithCurrency', '__construct'])
+            ->setMethods(['calculateDiscountsRoundedByCurrency', '__construct'])
             ->disableOriginalConstructor()
             ->getMock();
-        $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscountsWithCurrency')
+        $quantifiedProductDiscountCalculationMock->expects($this->once())->method('calculateDiscountsRoundedByCurrency')
             ->willReturn($quantifiedProductsDiscounts);
 
         $paymentPriceCalculationMock = $this->getMockBuilder(PaymentPriceCalculation::class)
