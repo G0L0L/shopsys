@@ -66,7 +66,7 @@ class CurrencyFormatterFactory
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
      * @return \CommerceGuys\Intl\Formatter\CurrencyFormatter
      */
-    public function createForCurrency(string $locale, Currency $currency): CurrencyFormatter
+    public function createByLocaleAndCurrency(string $locale, Currency $currency): CurrencyFormatter
     {
         $currencyFormatter = new CurrencyFormatter(
             $this->numberFormatRepository,

@@ -39,7 +39,7 @@ class CartPage extends AbstractPage
      * @param string $productName
      * @param string $price
      */
-    public function assertProductPriceRoundedCurrency($productName, $price)
+    public function assertProductPriceRoundedByCurrency($productName, $price)
     {
         $convertedPrice = $this->tester->getPriceWithVatConvertedToDomainDefaultCurrency($price);
         $formattedPriceWithCurrency = $this->tester->getFormattedPriceWithCurrencySymbolRoundedByCurrencyOnFrontend(Money::create($convertedPrice));

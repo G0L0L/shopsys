@@ -110,7 +110,7 @@ class NumberFormatHelper extends Module
     {
         $firstDomainDefaultCurrency = $this->currencyFacade->getDomainDefaultCurrencyByDomainId(Domain::FIRST_DOMAIN_ID);
         $firstDomainLocale = $this->localizationHelper->getFrontendLocale();
-        $currencyFormatter = $this->currencyFormatterFactory->createForCurrency($firstDomainLocale, $firstDomainDefaultCurrency);
+        $currencyFormatter = $this->currencyFormatterFactory->createByLocaleAndCurrency($firstDomainLocale, $firstDomainDefaultCurrency);
 
         $intlCurrency = $this->intlCurrencyRepository->get($firstDomainDefaultCurrency->getCode(), $firstDomainLocale);
 
@@ -154,7 +154,7 @@ class NumberFormatHelper extends Module
     {
         $firstDomainDefaultCurrency = $this->currencyFacade->getDomainDefaultCurrencyByDomainId(Domain::FIRST_DOMAIN_ID);
         $firstDomainLocale = $this->localizationHelper->getFrontendLocale();
-        $currencyFormatter = $this->currencyFormatterFactory->createForCurrency($firstDomainLocale, $firstDomainDefaultCurrency);
+        $currencyFormatter = $this->currencyFormatterFactory->createByLocaleAndCurrency($firstDomainLocale, $firstDomainDefaultCurrency);
 
         $intlCurrency = $this->intlCurrencyRepository->get($firstDomainDefaultCurrency->getCode(), $firstDomainLocale);
 
