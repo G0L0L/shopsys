@@ -22,6 +22,8 @@ class CartPage extends AbstractPage
     }
 
     /**
+     * @deprecated test is deprecated and will be removed in the next major
+     *
      * @param string $productName
      * @param string $price
      */
@@ -34,8 +36,6 @@ class CartPage extends AbstractPage
     }
 
     /**
-     * @deprecated test is deprecated and will be removed in the next major
-     *
      * @param string $productName
      * @param string $price
      */
@@ -48,6 +48,8 @@ class CartPage extends AbstractPage
     }
 
     /**
+     * @deprecated test is deprecated and will be removed in the next major
+     *
      * @param string $price
      */
     public function assertTotalPriceWithVat($price)
@@ -59,8 +61,6 @@ class CartPage extends AbstractPage
     }
 
     /**
-     * @deprecated test is deprecated and will be removed in the next major
-     *
      * @param string $price
      */
     public function assertTotalPriceWithVatRoundedByCurrency($price)

@@ -38,14 +38,14 @@ class CurrencyFormatterFactory
     }
 
     /**
-     * @deprecated Will be removed in the next major release, use CurrencyFormatterFactory::createForCurrency instead
+     * @deprecated Will be removed in the next major release, use CurrencyFormatterFactory::createByLocaleAndCurrency instead
      *
      * @param string $locale
      * @return \CommerceGuys\Intl\Formatter\CurrencyFormatter
      */
     public function create(string $locale): CurrencyFormatter
     {
-        @trigger_error(sprintf('The %s() method is deprecated and will be removed in the next major. Use the CurrencyFormatterFactory::createForCurrency instead.', __METHOD__), E_USER_DEPRECATED);
+        @trigger_error(sprintf('The %s() method is deprecated and will be removed in the next major. Use the CurrencyFormatterFactory::createByLocaleAndCurrency instead.', __METHOD__), E_USER_DEPRECATED);
 
         $currencyFormatter = new CurrencyFormatter(
             $this->numberFormatRepository,

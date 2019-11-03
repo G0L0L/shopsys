@@ -379,10 +379,11 @@ Because of new functions, new tests have been introduced.
     - `Rounding::roundPriceWithVat()` use `roundPriceWithVatWithCurrency()`
     - `BasePriceCalculation::getBasePriceWithVat()` use `getBasePriceWithVatWithCurrency()`
     - `BasePriceCalculation::calculateBasePrice()` use `calculateBasePriceWithCurrency()`
+    - `CurrencyFormatterFactory::create()` use `createByLocaleAndCurrency()` instead
 - these tests are deprecated and will be removed in the next major release
     - `CartBoxPage::seeCountAndPriceInCartBox()`
-    - `CartPage::assertProductPriceRoundedCurrency()`
-    - `CartPage::assertTotalPriceWithVatRoundedByCurrency()`
+    - `CartPage::assertProductPrice()`
+    - `CartPage::assertTotalPriceWithVat()`
     - `NumberFormatHelper::getFormattedPriceWithCurrencySymbolOnFrontend()`
     - `NumberFormatHelper::getFormattedPriceOnFrontend()`
     - `RoundingTest::testRounding()`
