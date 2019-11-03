@@ -71,7 +71,7 @@ class ProductInputPriceRecalculator
             $domainId = $productManualInputPrice->getPricingGroup()->getDomainId();
             $defaultCurrency = $this->currencyFacade->getDomainDefaultCurrencyByDomainId($domainId);
 
-            $basePriceForPricingGroup = $this->basePriceCalculation->calculateBasePriceWithCurrency(
+            $basePriceForPricingGroup = $this->basePriceCalculation->calculateBasePriceRoundedByCurrency(
                 $productManualInputPrice->getInputPrice(),
                 $inputPriceType,
                 $productManualInputPrice->getProduct()->getVat(),
