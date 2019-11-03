@@ -58,11 +58,11 @@
 
 {% block grid_value_cell_id_roundingType %}
     <span class="form-edit-block form-edit-block--size-1">
-        {% if value == ROUNDING_TYPE_HUNDREDTHS %}
+        {% if value == constant('Shopsys\\FrameworkBundle\\Model\\Pricing\\Currency\\Currency::ROUNDING_TYPE_HUNDREDTHS') %}
             {{ 'To hundredths (cents)'|trans }}
-        {% elseif value == ROUNDING_TYPE_FIFTIES %}
+        {% elseif value == constant('Shopsys\\FrameworkBundle\\Model\\Pricing\\Currency\\Currency::ROUNDING_TYPE_FIFTIES') %}
             {{ 'To fifty hundredths (halfs)'|trans }}
-        {% elseif value == ROUNDING_TYPE_INTEGER %}
+        {% elseif value == constant('Shopsys\\FrameworkBundle\\Model\\Pricing\\Currency\\Currency::ROUNDING_TYPE_INTEGER') %}
             {{ 'To whole numbers'|trans }}
         {% endif %}
     </span>

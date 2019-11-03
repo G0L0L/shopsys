@@ -68,9 +68,6 @@ class CurrencyGridFactory implements GridFactoryInterface
             [
                 'defaultCurrency' => $this->currencyFacade->getDefaultCurrency(),
                 'notAllowedToDeleteCurrencyIds' => $this->currencyFacade->getNotAllowedToDeleteCurrencyIds(),
-                'ROUNDING_TYPE_HUNDREDTHS' => Currency::ROUNDING_TYPE_HUNDREDTHS,
-                'ROUNDING_TYPE_FIFTIES' => Currency::ROUNDING_TYPE_FIFTIES,
-                'ROUNDING_TYPE_INTEGER' => Currency::ROUNDING_TYPE_INTEGER,
             ]
         );
 
