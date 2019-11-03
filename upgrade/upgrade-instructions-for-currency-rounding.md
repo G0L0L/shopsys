@@ -406,6 +406,9 @@ Because of new functions, new tests have been introduced.
     - `QuantifiedProductDiscountCalculation::calculateDiscount()` use `calculateDiscountRoundedByCurrency()` instead
     - `QuantifiedProductDiscountCalculation::calculateDiscounts()` use `calculateDiscountsRoundedByCurrency()`
     - `BasePriceCalculation::applyCoefficients()` is not used
+    - `Rounding::roundPriceWithVat()` use `roundPriceWithVatByCurrency()`
+    - `BasePriceCalculation::getBasePriceWithVat()` use `getBasePriceWithVatRoundedCurrency()`
+    - `BasePriceCalculation::calculateBasePrice()` use `calculateBasePriceRoundedByCurrency()`
 - these tests are deprecated and will be removed in the next major release
     - `CartBoxPage::seeCountAndPriceInCartBox()`
     - `CartPage::assertProductPrice()`
