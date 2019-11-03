@@ -402,6 +402,8 @@ Because of new functions, new tests have been introduced.
     - `BasePriceCalculation::getBasePriceWithVat()` use `getBasePriceWithVatWithCurrency()`
     - `BasePriceCalculation::calculateBasePrice()` use `calculateBasePriceWithCurrency()`
     - `CurrencyFormatterFactory::create()` use `createByLocaleAndCurrency()` instead
+    - `QuantifiedProductDiscountCalculation::calculateDiscount()` use `calculateDiscountRoundedByCurrency()` instead
+    - `QuantifiedProductDiscountCalculation::calculateDiscounts()` use `calculateDiscountsRoundedByCurrency()`
 - these tests are deprecated and will be removed in the next major release
     - `CartBoxPage::seeCountAndPriceInCartBox()`
     - `CartPage::assertProductPrice()`

@@ -35,7 +35,7 @@ class QuantifiedProductDiscountCalculation
     }
 
     /**
-     * @deprecated Will be removed in the next major release, use QuantifiedProductDiscountCalculation::calculateDiscountWithCurrency instead
+     * @deprecated Will be removed in the next major release, use QuantifiedProductDiscountCalculation::calculateDiscountRoundedByCurrency instead
      *
      * @param \Shopsys\FrameworkBundle\Model\Order\Item\QuantifiedItemPrice $quantifiedItemPrice
      * @param string $discountPercent
@@ -43,7 +43,7 @@ class QuantifiedProductDiscountCalculation
      */
     protected function calculateDiscount(QuantifiedItemPrice $quantifiedItemPrice, string $discountPercent): ?Price
     {
-        @trigger_error(sprintf('The %s() method is deprecated and will be removed in the next major. Use the QuantifiedProductDiscountCalculation::calculateDiscountWithCurrency instead.', __METHOD__), E_USER_DEPRECATED);
+        @trigger_error(sprintf('The %s() method is deprecated and will be removed in the next major. Use the QuantifiedProductDiscountCalculation::calculateDiscountRoundedByCurrency instead.', __METHOD__), E_USER_DEPRECATED);
 
         $vat = $quantifiedItemPrice->getVat();
         $multiplier = (string)($discountPercent / 100);
@@ -90,7 +90,7 @@ class QuantifiedProductDiscountCalculation
     }
 
     /**
-     * @deprecated Will be removed in the next major release, use QuantifiedProductDiscountCalculation::calculateDiscountsWithCurrency instead
+     * @deprecated Will be removed in the next major release, use QuantifiedProductDiscountCalculation::calculateDiscountsRoundedByCurrency instead
      *
      * @param \Shopsys\FrameworkBundle\Model\Order\Item\QuantifiedItemPrice[] $quantifiedItemsPrices
      * @param string|null $discountPercent
@@ -98,7 +98,7 @@ class QuantifiedProductDiscountCalculation
      */
     public function calculateDiscounts(array $quantifiedItemsPrices, ?string $discountPercent): array
     {
-        @trigger_error(sprintf('The %s() method is deprecated and will be removed in the next major. Use the QuantifiedProductDiscountCalculation::calculateDiscountsWithCurrency instead.', __METHOD__), E_USER_DEPRECATED);
+        @trigger_error(sprintf('The %s() method is deprecated and will be removed in the next major. Use the QuantifiedProductDiscountCalculation::calculateDiscountsRoundedByCurrency instead.', __METHOD__), E_USER_DEPRECATED);
 
         $quantifiedItemsDiscounts = [];
         foreach ($quantifiedItemsPrices as $quantifiedItemIndex => $quantifiedItemPrice) {
