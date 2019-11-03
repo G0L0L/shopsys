@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Shopsys\FrameworkBundle\Model\Pricing;
 
 use Shopsys\FrameworkBundle\Component\Money\Money;
+use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 
 class BasePriceCalculation
@@ -55,13 +56,13 @@ class BasePriceCalculation
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
      * @return \Shopsys\FrameworkBundle\Model\Pricing\Price
      */
-    public function calculateBasePriceWithCurrency(
+    public function calculateBasePriceRoundedByCurrency(
         Money $inputPrice,
         int $inputPriceType,
         Vat $vat,
         Currency $currency
     ): Price {
-        $basePriceWithVat = $this->getBasePriceWithVatWithCurrency($inputPrice, $inputPriceType, $vat, $currency);
+        $basePriceWithVat = $this->getBasePriceWithVatWithRoundedByCurrency($inputPrice, $inputPriceType, $vat, $currency);
         $vatAmount = $this->priceCalculation->getVatAmountByPriceWithVat($basePriceWithVat, $vat);
         $basePriceWithoutVat = $this->rounding->roundPriceWithoutVat($basePriceWithVat->subtract($vatAmount));
 
@@ -120,7 +121,7 @@ class BasePriceCalculation
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
      * @return \Shopsys\FrameworkBundle\Component\Money\Money
      */
-    protected function getBasePriceWithVatWithCurrency(
+    protected function getBasePriceWithVatWithRoundedByCurrency(
         Money $inputPrice,
         int $inputPriceType,
         Vat $vat,

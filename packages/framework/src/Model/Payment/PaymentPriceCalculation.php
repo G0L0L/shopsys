@@ -60,7 +60,7 @@ class PaymentPriceCalculation
      */
     public function calculateIndependentPrice(Payment $payment, Currency $currency): Price
     {
-        return $this->basePriceCalculation->calculateBasePriceWithCurrency(
+        return $this->basePriceCalculation->calculateBasePriceRoundedByCurrency(
             $payment->getPrice($currency)->getPrice(),
             $this->pricingSetting->getInputPriceType(),
             $payment->getVat(),

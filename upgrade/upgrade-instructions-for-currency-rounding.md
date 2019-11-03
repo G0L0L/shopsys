@@ -235,7 +235,7 @@ Because of new functions, new tests have been introduced.
         $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
         $currency = new Currency($currencyData);
 
-        $basePrice = $basePriceCalculation->calculateBasePriceWithCurrency($inputPrice, $inputPriceType, $vat, $currency);
+        $basePrice = $basePriceCalculation->calculateBasePriceRoundedByCurrency($inputPrice, $inputPriceType, $vat, $currency);
 
         $this->assertThat($basePrice->getPriceWithoutVat(), new IsMoneyEqual($basePriceWithoutVat));
         $this->assertThat($basePrice->getPriceWithVat(), new IsMoneyEqual($basePriceWithVat));

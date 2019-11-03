@@ -5,6 +5,8 @@ namespace Tests\FrameworkBundle\Unit\Model\Pricing;
 use PHPUnit\Framework\TestCase;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Pricing\BasePriceCalculation;
+use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
+use Shopsys\FrameworkBundle\Model\Pricing\Currency\CurrencyData;
 use Shopsys\FrameworkBundle\Model\Pricing\Price;
 use Shopsys\FrameworkBundle\Model\Pricing\PriceCalculation;
 use Shopsys\FrameworkBundle\Model\Pricing\PricingSetting;
@@ -113,7 +115,7 @@ class BasePriceCalculationTest extends TestCase
         $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
         $currency = new Currency($currencyData);
 
-        $basePrice = $basePriceCalculation->calculateBasePriceWithCurrency($inputPrice, $inputPriceType, $vat, $currency);
+        $basePrice = $basePriceCalculation->calculateBasePriceRoundedByCurrency($inputPrice, $inputPriceType, $vat, $currency);
 
         $this->assertThat($basePrice->getPriceWithoutVat(), new IsMoneyEqual($basePriceWithoutVat));
         $this->assertThat($basePrice->getPriceWithVat(), new IsMoneyEqual($basePriceWithVat));
