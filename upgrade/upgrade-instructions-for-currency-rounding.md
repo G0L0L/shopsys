@@ -290,6 +290,7 @@ Because of new functions, new tests have been introduced.
             return $value->round(2);
      });
 ```
+<<<<<<< HEAD
 - change test `BasePriceCalculationTest::testApplyCoefficient()`
 ```diff
     public function testApplyCoefficient(
@@ -404,6 +405,7 @@ Because of new functions, new tests have been introduced.
     - `CurrencyFormatterFactory::create()` use `createByLocaleAndCurrency()` instead
     - `QuantifiedProductDiscountCalculation::calculateDiscount()` use `calculateDiscountRoundedByCurrency()` instead
     - `QuantifiedProductDiscountCalculation::calculateDiscounts()` use `calculateDiscountsRoundedByCurrency()`
+    - `BasePriceCalculation::applyCoefficients()` is not used
 - these tests are deprecated and will be removed in the next major release
     - `CartBoxPage::seeCountAndPriceInCartBox()`
     - `CartPage::assertProductPrice()`
@@ -413,3 +415,4 @@ Because of new functions, new tests have been introduced.
     - `RoundingTest::testRounding()`
     - `RoundingTest::testRoundingPriceWithVat()`
     - `BasePriceCalculationTest::testCalculateBasePrice()`
+    - `BasePriceCalculationTest::testApplyCoefficient()` with its provider `BasePriceCalculationTest::applyCoefficientProvider`

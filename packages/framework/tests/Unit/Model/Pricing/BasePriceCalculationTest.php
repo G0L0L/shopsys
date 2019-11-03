@@ -5,8 +5,6 @@ namespace Tests\FrameworkBundle\Unit\Model\Pricing;
 use PHPUnit\Framework\TestCase;
 use Shopsys\FrameworkBundle\Component\Money\Money;
 use Shopsys\FrameworkBundle\Model\Pricing\BasePriceCalculation;
-use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
-use Shopsys\FrameworkBundle\Model\Pricing\Currency\CurrencyData;
 use Shopsys\FrameworkBundle\Model\Pricing\Price;
 use Shopsys\FrameworkBundle\Model\Pricing\PriceCalculation;
 use Shopsys\FrameworkBundle\Model\Pricing\PricingSetting;
@@ -122,6 +120,10 @@ class BasePriceCalculationTest extends TestCase
         $this->assertThat($basePrice->getVatAmount(), new IsMoneyEqual($basePriceVatAmount));
     }
 
+    /**
+     * @deprecated provider is deprecated and will be removed in the next major.
+     * Test uses this provider works with unused function
+     */
     public function applyCoefficientProvider()
     {
         return [
@@ -153,6 +155,8 @@ class BasePriceCalculationTest extends TestCase
     }
 
     /**
+     * @deprecated test is deprecated and will be removed in the next major. Test works with unused function
+     *
      * @dataProvider applyCoefficientProvider
      * @param \Shopsys\FrameworkBundle\Component\Money\Money $priceWithVat
      * @param mixed $vatPercent
@@ -169,19 +173,11 @@ class BasePriceCalculationTest extends TestCase
         Money $resultPriceWithoutVat,
         Money $resultVatAmount
     ) {
-        $currencyData = new CurrencyData();
-        $currencyData->name = 'currencyName';
-        $currencyData->code = Currency::CODE_CZK;
-        $currencyData->exchangeRate = '1.0';
-        $currencyData->minFractionDigits = 2;
-        $currencyData->roundingType = Currency::ROUNDING_TYPE_INTEGER;
-        $currency = new Currency($currencyData);
-
         $rounding = $this->getMockBuilder(Rounding::class)
-            ->setMethods(['roundPriceWithVatWithCurrency', 'roundPriceWithoutVat', 'roundVatAmount'])
+            ->setMethods(['roundPriceWithVat', 'roundPriceWithoutVat', 'roundVatAmount'])
             ->disableOriginalConstructor()
             ->getMock();
-        $rounding->expects($this->any())->method('roundPriceWithVatWithCurrency')->willReturnCallback(function (Money $value) {
+        $rounding->expects($this->any())->method('roundPriceWithVat')->willReturnCallback(function (Money $value) {
             return $value->round(0);
         });
         $rounding->expects($this->any())->method('roundPriceWithoutVat')->willReturnCallback(function (Money $value) {
@@ -198,7 +194,7 @@ class BasePriceCalculationTest extends TestCase
         $vatData->name = 'vat';
         $vatData->percent = $vatPercent;
         $vat = new Vat($vatData);
-        $resultPrice = $basePriceCalculation->applyCoefficients($price, $vat, $coefficients, $currency);
+        $resultPrice = $basePriceCalculation->applyCoefficients($price, $vat, $coefficients);
 
         $this->assertThat($resultPrice->getPriceWithVat(), new IsMoneyEqual($resultPriceWithVat));
         $this->assertThat($resultPrice->getPriceWithoutVat(), new IsMoneyEqual($resultPriceWithoutVat));

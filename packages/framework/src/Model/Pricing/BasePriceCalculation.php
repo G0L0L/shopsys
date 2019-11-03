@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Shopsys\FrameworkBundle\Model\Pricing;
 
 use Shopsys\FrameworkBundle\Component\Money\Money;
-use Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency;
 use Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat;
 
 class BasePriceCalculation
@@ -70,19 +69,20 @@ class BasePriceCalculation
     }
 
     /**
+     * @deprecated method is deprecated and will be removed in the next major. This method is not used, only in tests
+     *
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Price $price
      * @param \Shopsys\FrameworkBundle\Model\Pricing\Vat\Vat $vat
      * @param string[] $coefficients
-     * @param \Shopsys\FrameworkBundle\Model\Pricing\Currency\Currency $currency
      * @return \Shopsys\FrameworkBundle\Model\Pricing\Price
      */
-    public function applyCoefficients(Price $price, Vat $vat, array $coefficients, Currency $currency): Price
+    public function applyCoefficients(Price $price, Vat $vat, array $coefficients): Price
     {
         $priceWithVatBeforeRounding = $price->getPriceWithVat();
         foreach ($coefficients as $coefficient) {
             $priceWithVatBeforeRounding = $priceWithVatBeforeRounding->multiply($coefficient);
         }
-        $priceWithVat = $this->rounding->roundPriceWithVatWithCurrency($priceWithVatBeforeRounding, $currency);
+        $priceWithVat = $this->rounding->roundPriceWithVat($priceWithVatBeforeRounding);
         $vatAmount = $this->priceCalculation->getVatAmountByPriceWithVat($priceWithVat, $vat);
         $priceWithoutVat = $this->rounding->roundPriceWithoutVat($priceWithVat->subtract($vatAmount));
 
