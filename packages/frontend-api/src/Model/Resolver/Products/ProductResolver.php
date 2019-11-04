@@ -47,12 +47,10 @@ class ProductResolver implements ResolverInterface, AliasedInterface
         }
 
         try {
-            $product = $this->productFacade->getByUuid($uuid);
+            return $this->productFacade->getByUuid($uuid);
         } catch (\Shopsys\FrameworkBundle\Model\Product\Exception\ProductNotFoundException $productNotFoundException) {
             throw new UserError($productNotFoundException->getMessage());
         }
-
-        return $product;
     }
 
     /**
