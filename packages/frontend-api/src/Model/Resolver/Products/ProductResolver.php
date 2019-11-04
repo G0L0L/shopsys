@@ -52,10 +52,6 @@ class ProductResolver implements ResolverInterface, AliasedInterface
             throw new UserError($productNotFoundException->getMessage());
         }
 
-        if ($product->isVariant() === true) {
-            throw new UserError('This product is variant and there is no support for variants yet.');
-        }
-
         return $product;
     }
 
