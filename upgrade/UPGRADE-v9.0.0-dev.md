@@ -95,11 +95,6 @@ There you can find links to upgrade notes for other versions too.
         [MainVariant.types.yml from Github](https://github.com/shopsys/shopsys/blob/9.0/project-base/src/Shopsys/ShopBundle/Resources/graphql-types/MainVariant.types.yml) to `src/Shopsys/ShopBundle/Resources/graphql-types/MainVariant.types.yml`
         [RegularProduct.types.yml from Github](https://github.com/shopsys/shopsys/blob/9.0/project-base/src/Shopsys/ShopBundle/Resources/graphql-types/RegularProduct.types.yml) to `src/Shopsys/ShopBundle/Resources/graphql-types/RegularProduct.types.yml`
         [Variant.types.yml from Github](https://github.com/shopsys/shopsys/blob/9.0/project-base/src/Shopsys/ShopBundle/Resources/graphql-types/Variant.types.yml) to `src/Shopsys/ShopBundle/Resources/graphql-types/Variant.types.yml`
-    - update your [`Products.types.yml`](https://github.com/shopsys/shopsys/blob/9.0/project-base/src/Shopsys/ShopBundle/Resources/graphql-types/Products.types.yml)
-      ```diff
-          -    type: object
-          +    type: interface
-      ```
 
 ### Tools
 
