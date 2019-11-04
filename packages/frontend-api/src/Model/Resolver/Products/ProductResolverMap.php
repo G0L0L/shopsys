@@ -41,12 +41,11 @@ class ProductResolverMap extends ResolverMap
                 self::RESOLVE_TYPE => function (Product $product) {
                     if ($product->isMainVariant()) {
                         return 'MainVariant';
-                    }
-                    if ($product->isVariant()) {
+                    } else if ($product->isVariant()) {
                         return 'Variant';
+                    } else {
+                        return 'RegularProduct';
                     }
-
-                    return 'RegularProduct';
                 },
             ],
             'RegularProduct' => $this->mapProduct(),
